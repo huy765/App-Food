@@ -8,7 +8,7 @@ import { Switch, Route, Link } from "react-router-dom";
 
 import { Layout, Button } from "antd";
 
-import { SearchOutlined } from "@ant-design/icons";
+import { SearchOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import "antd/dist/antd.css";
 import "./style/index.css";
 
@@ -19,6 +19,7 @@ import Home from "./components/home.component";
 
 import Login from "./components/login.component.jsx";
 import Register from "./components/register.component";
+import cartService from "./services/cart.server";
 
 class App extends Component {
   constructor(props) {
@@ -31,19 +32,22 @@ class App extends Component {
       currentUser: undefined,
       produceds: [],
       collapsed: false,
+      cart: [],
     };
   }
 
   componentDidMount() {
     const user = AuthService.getCurrentUser();
 
-    console.log(user);
-
     if (user) {
       this.setState({
         currentUser: user,
         showModeratorBoard: user.roles.includes("ROLE_MODERATOR"),
         showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+      });
+
+      cartService.GetListFoodOrderByIdUser(user.id).then((res) => {
+        this.setState({ cart: res.data });
       });
     }
 
@@ -85,6 +89,37 @@ class App extends Component {
               </Button>
             </div>
           </div>
+          <div className="Cart">
+            <span className="item-hover">
+              <ShoppingCartOutlined className="Item-icon" />
+
+              <div className="Cart-item">
+                <header>
+                  <h3 className="Title-cart">Danh sách món đã chọn</h3>
+                </header>
+                {this.state.cart.map((item) => (
+                <div className="list-Item">
+                  <div className="item-Food">
+                    <div className="img">
+                      <img
+                        className="img-item"
+                        src="https://cf.shopee.vn/file/687f3967b7c2fe6a134a2c11894eea4b_tn"
+                        alt=""
+                      />
+                    </div>
+                      <div className="Detail">
+                        <p className="TitleFood Detail-item">{item.foodname}</p>
+                        <p className="qrt Detail-item">{item.qtr}</p>
+                        <p className="Price Detail-item">{item.price}</p>
+                      </div>
+                    
+                  </div>
+                </div>
+                ))}
+              </div>
+            </span>
+          </div>
+
           {currentUser ? (
             <div className="Header-item">
               <li>
@@ -121,7 +156,7 @@ class App extends Component {
           <Switch>
             <Route exact path={"/login"} component={Login} />
             <Route exact path={"/register"} component={Register} />
-            <Route exact path={[["/home","/"]]} component={Home}/>
+            <Route exact path={[["/home", "/"]]} component={Home} />
           </Switch>
         </Content>
       </div>

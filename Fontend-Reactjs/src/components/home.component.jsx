@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "antd/dist/antd.css";
 import "../style/home.css";
 
-import {} from "@ant-design/icons";
+import { } from "@ant-design/icons";
 
 import { Row, Col } from "antd";
 
@@ -16,6 +16,8 @@ import { Button } from "antd";
 
 import { Layout, Menu } from "antd";
 import { UserOutlined, TeamOutlined } from "@ant-design/icons";
+import authService from "../services/auth.service";
+import cartService from "../services/cart.server";
 
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
@@ -30,35 +32,49 @@ export default class Home extends Component {
       produceds: [],
       category: [],
       ChildCategoryFood: [],
+      user : [],
+      currentUser:undefined,
+      Message:"",
     };
     this.getFoodByCategory = this.getFoodByCategory.bind(this);
   }
 
   onCollapse = (collapsed) => {
-    console.log(collapsed);
     this.setState({ collapsed });
   };
 
   componentDidMount() {
+    const user = authService.getCurrentUser();
+    this.setState({user: user})
+
+
+
     ProducesService.getCurrentProduces().then((res) => {
+      
       this.setState({ produceds: res.data });
     });
 
     CategoryService.getCurrentProduces().then((res) => {
       this.setState({ category: res.data });
     });
+
+    
   }
 
   getFoodByCategory(id) {
     console.log(id);
     ProducesService.getFoodByCategoryServer(id).then((res) => {
       this.setState({ ChildCategoryFood: res.data });
-      console.log(this.state.ChildCategoryFood.length);
     });
   }
 
+  onClickDatMon = (userid,foodid,foodname,price,qty) =>{
+    let itemCart = {userid:userid, foodid,foodname,price,qty}
+    cartService.addFoodByCart(itemCart);
+  }
+
   getAllProduced() {
-      this.setState({ ChildCategoryFood: [] });
+    this.setState({ ChildCategoryFood: [] });
   }
 
   render() {
@@ -78,9 +94,9 @@ export default class Home extends Component {
               </SubMenu>
 
               <SubMenu key="sub2" icon={<TeamOutlined />} title="Menu">
-              <Menu.Item onClick= { () => this.getAllProduced()}>Hiển thị toàn bộ món ăn</Menu.Item>
+                <Menu.Item onClick={() => this.getAllProduced()}>Hiển thị toàn bộ món ăn</Menu.Item>
                 {this.state.category.map((cate) => (
-                  <Menu.Item key={cate.id} onClick= { () => this.getFoodByCategory(cate.id)}>{cate.namecategory}</Menu.Item>
+                  <Menu.Item key={cate.id} onClick={() => this.getFoodByCategory(cate.id)}>{cate.namecategory}</Menu.Item>
                 ))}
               </SubMenu>
               <SubMenu key="sub3" icon={<TeamOutlined />} title="Admin">
@@ -95,33 +111,34 @@ export default class Home extends Component {
             <Row className="rowItem">
               {this.state.ChildCategoryFood.length > 0
                 ? this.state.ChildCategoryFood.map((food) => (
-                    <Col className="colums" span={4}>
-                      <Card
-                        className="Card-item"
-                        hoverable
-                        cover={<img alt="example" src={food.linkimage} />}
-                      >
-                        <Meta title={food.namefood} description={food.price} />
-                        <Button type="primary" block>
-                          Đặt món
-                        </Button>
-                      </Card>
-                    </Col>
-                  ))
+                  <Col className="colums" span={4}>
+                    <Card
+                      className="Card-item"
+                      key={food.id}
+                      hoverable
+                      cover={<img alt="example" src={food.linkimage} />}
+                    >
+                      <Meta title={food.namefood} description={food.price} />
+                      <Button type="primary" block>
+                        Đặt món
+                      </Button>
+                    </Card>
+                  </Col>
+                ))
                 : this.state.produceds.map((food) => (
-                    <Col className="colums" span={4}>
-                      <Card
-                        className="Card-item"
-                        hoverable
-                        cover={<img alt="example" src={food.linkimage} />}
-                      >
-                        <Meta title={food.namefood} description={food.price} />
-                        <Button type="primary" block>
-                          Đặt món
-                        </Button>
-                      </Card>
-                    </Col>
-                  ))}
+                  <Col className="colums" span={4}>
+                    <Card
+                      className="Card-item"
+                      hoverable
+                      cover={<img alt="example" src={food.linkimage} />}
+                    >
+                      <Meta title={food.namefood} description={food.price} />
+                      <Button type="primary" block onClick={() => this.onClickDatMon(this.state.user.id, food.id ,food.namefood,food.price,"1")}>
+                        Đặt món
+                      </Button>
+                    </Card>
+                  </Col>
+                ))}
             </Row>
           </Content>
         </Layout>
