@@ -206,7 +206,7 @@ label {
   position: absolute;
   top: 3px;
   right: 8px;
-  background-color: #108ee9;
+  background-color: #edf2f5;
   border-radius: 5px;
   height: 34px;
   width: 94px;
@@ -384,6 +384,7 @@ body{
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   background-image: url(wood.png);
+  color: black;
 }
 .ant-menu-dark.ant-menu-inline .ant-menu-item, .ant-menu-dark.ant-menu-inline .ant-menu-submenu-title {
   width: 100%;
