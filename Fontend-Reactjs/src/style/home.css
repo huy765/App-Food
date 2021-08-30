@@ -145,16 +145,16 @@
   position: fixed;
   bottom: 0;
   z-index: 1;
-  height: 48px;
   color: #fff;
   line-height: 48px;
   text-align: center;
-  background: #108ee9;
+  background-image: url(../wood2.jpg);
   cursor: pointer;
   -webkit-transition: all 0.2s;
   -o-transition: all 0.2s;
   transition: all 0.2s;
   height: 35px;
+  width: 100%;
 }
 
 .ant-menu-dark.ant-menu-inline,
@@ -162,12 +162,13 @@
 .ant-menu-dark.ant-menu-vertical-left,
 .ant-menu-dark.ant-menu-vertical-right {
   border-right: 0;
-  background-color: #108ee9;
+  background-image: url(../wood2.jpg);
 }
 
 .ant-menu-dark .ant-menu-inline.ant-menu-sub {
-  background: #108ee9;
+  background-image: url(../wood2.jpg);
 }
+
 
 .ant-layout-sider-children {
   height: 100%;

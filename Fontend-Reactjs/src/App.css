@@ -9,7 +9,7 @@ label {
 }
 
 .card {
-  background-color: #f7f7f7;
+  background-image: url(wood.png);
   padding: 20px 25px 30px;
   margin: 0 auto 25px;
   margin-top: 50px;
@@ -32,11 +32,8 @@ label {
 }
 
 .background-color {
-  background: linear-gradient(
-    135deg,
-    rgba(34, 193, 195, 1) 0%,
-    rgba(253, 187, 45, 1) 100%
-  );
+  background-image: url(wood.png);
+  
 }
 
 @import "~antd/dist/antd.css";
@@ -48,13 +45,13 @@ label {
 .ant-layout-header,
 .ant-layout-footer {
   color: #fff;
-  background: #7dbcea;
+  background-image: url(wood2.jpg);
 }
 [data-theme="dark"] .ant-layout-header {
-  background: #6aa0c7;
+  background-image: url(wood2.jpg);
 }
 [data-theme="dark"] .ant-layout-footer {
-  background: #6aa0c7;
+  background-image: url(wood2.jpg);
 }
 .ant-layout-footer {
   line-height: 1.5;
@@ -62,30 +59,26 @@ label {
 .ant-layout-sider {
   color: #fff;
   line-height: 120px;
-  background: #3ba0e9;
+  background-image: url(wood.png);
 }
 [data-theme="dark"] .ant-layout-sider {
-  background: #3499ec;
+  background-image: url(wood.png);
 }
 .ant-layout-content {
   min-height: 120px;
   color: #fff;
   line-height: 120px;
-  background: rgba(16, 142, 233, 1);
+  background-image: url(wood.png);
 }
 [data-theme="dark"] .ant-layout-content {
-  background: #107bcb;
+  background-image: url(wood.png);
 }
-.code-box-demo > .ant-layout + .ant-layout {
-  margin-top: 48px;
-}
-
 .ant-layout-content {
   min-height: 120px;
   color: #fff;
   line-height: 120px;
   height: 100vh;
-  background: rgba(16, 142, 233, 1);
+  background-image: url(wood.png);
 }
 
 .rowItem {
@@ -248,7 +241,7 @@ label {
   color: #fff;
   line-height: 48px;
   text-align: center;
-  background: #108ee9;
+  background-image: url(wood2.jpg);;
   cursor: pointer;
   -webkit-transition: all 0.2s;
   -o-transition: all 0.2s;
@@ -260,11 +253,11 @@ label {
 .ant-menu-dark.ant-menu-vertical-left,
 .ant-menu-dark.ant-menu-vertical-right {
   border-right: 0;
-  background-color: #108ee9;
+  background-image: url(wood2.jpg);
 }
 
 .ant-menu-dark .ant-menu-inline.ant-menu-sub {
-  background: #108ee9;
+  background-image: url(wood2.jpg);
 }
 
 .Header-app {
@@ -295,10 +288,11 @@ li {
 
 .Item-icon {
   position: absolute;
-  right: 231px;
+  right: 200px;
   top: 18px;
   height: 50px;
   width: 50px;
+  z-index: 20px;
 }
 
 .Cart-item {
@@ -365,4 +359,33 @@ li {
 p {
   margin-top: 0;
   margin-bottom: 0em;
+}
+body{
+  background-image: url(wood.png);
+}
+
+.ant-layout-sider-children {
+  height: 100%;
+  margin-top: -0.1px;
+  padding-top: 41.1px;
+  background-image: url(wood2.jpg);
+  border-style: solid;
+  border-color: url(wood2.jpg);
+}
+.ant-menu-dark.ant-menu-inline .ant-menu-item, .ant-menu-dark.ant-menu-inline .ant-menu-submenu-title {
+  width: 100%;
+  background-image: url(wood2.jpg);
+}
+.ant-menu-inline.ant-menu-root .ant-menu-item > .ant-menu-title-content, .ant-menu-inline.ant-menu-root .ant-menu-submenu-title > .ant-menu-title-content {
+  -ms-flex: auto;
+  flex: auto;
+  min-width: 0;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  background-image: url(wood.png);
+}
+.ant-menu-dark.ant-menu-inline .ant-menu-item, .ant-menu-dark.ant-menu-inline .ant-menu-submenu-title {
+  width: 100%;
+  background-image: url(wood.png);
 }
