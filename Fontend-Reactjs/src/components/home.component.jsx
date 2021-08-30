@@ -13,6 +13,7 @@ import { Row, Col } from "antd";
 
 import { Card } from "antd";
 import { Button } from "antd";
+import { Pagination } from 'antd';
 
 import { Layout, Menu } from "antd";
 import { UserOutlined, TeamOutlined } from "@ant-design/icons";
@@ -30,11 +31,14 @@ export default class Home extends Component {
 
     this.state = {
       produceds: [],
+      showProduceds:[],
       category: [],
       ChildCategoryFood: [],
       user : [],
       currentUser:undefined,
       Message:"",
+      total:0,
+
     };
     this.getFoodByCategory = this.getFoodByCategory.bind(this);
   }
@@ -45,13 +49,16 @@ export default class Home extends Component {
 
   componentDidMount() {
     const user = authService.getCurrentUser();
-    this.setState({user: user})
+    this.setState({ user: user })
 
-
+    
 
     ProducesService.getCurrentProduces().then((res) => {
-      
-      this.setState({ produceds: res.data });
+      this.setState({
+        produceds:res.data,
+        showProduceds:res.data.slice(0,10),
+        total:res.data.length,
+      })
     });
 
     CategoryService.getCurrentProduces().then((res) => {
@@ -77,8 +84,15 @@ export default class Home extends Component {
     this.setState({ ChildCategoryFood: [] });
   }
 
+  changePage = (page,pageSize) =>  {
+    var start =(page-1)*pageSize  ;
+    var end =(page)*pageSize;
+    this.setState({showProduceds: this.state.produceds.slice(start,end)})
+  }
+
   render() {
     const { collapsed } = this.state;
+    
     return (
       <div className="site-layout-background">
         <Layout
@@ -125,7 +139,7 @@ export default class Home extends Component {
                     </Card>
                   </Col>
                 ))
-                : this.state.produceds.map((food) => (
+                : this.state.showProduceds.map((food) => (
                   <Col className="colums" span={4}>
                     <Card
                       className="Card-item"
@@ -140,6 +154,16 @@ export default class Home extends Component {
                   </Col>
                 ))}
             </Row>
+            <div>
+              <Pagination padding ="24px"
+                defaultPageSize={10}
+                total={this.state.total} 
+                defaultCurrent={1} 
+                showSizeChanger={false}
+                onChange={this.changePage}
+                />
+            </div>
+            
           </Content>
         </Layout>
       </div>
