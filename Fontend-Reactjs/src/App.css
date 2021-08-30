@@ -389,3 +389,9 @@ body{
   width: 100%;
   background-image: url(wood.png);
 }
+
+
+.ant-pagination {
+  margin: 24px 0px;
+  text-align: center;
+}
