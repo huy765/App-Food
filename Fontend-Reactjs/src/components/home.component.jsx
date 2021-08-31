@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ProducesService from "../services/produce.service";
 import CategoryService from "../services/Category.service";
-// import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "antd/dist/antd.css";
@@ -34,11 +33,12 @@ export default class Home extends Component {
       showProduceds:[],
       category: [],
       ChildCategoryFood: [],
+      showChildCategoryFoodProduceds:[],
       user : [],
       currentUser:undefined,
       Message:"",
       total:0,
-
+      current:1,
     };
     this.getFoodByCategory = this.getFoodByCategory.bind(this);
   }
@@ -58,7 +58,9 @@ export default class Home extends Component {
         produceds:res.data,
         showProduceds:res.data.slice(0,10),
         total:res.data.length,
+        current:1,
       })
+      console.log(res.data.slice(0,10))
     });
 
     CategoryService.getCurrentProduces().then((res) => {
@@ -71,7 +73,12 @@ export default class Home extends Component {
   getFoodByCategory(id) {
     console.log(id);
     ProducesService.getFoodByCategoryServer(id).then((res) => {
-      this.setState({ ChildCategoryFood: res.data });
+      this.setState({ 
+        produceds: res.data,
+        showProduceds:res.data.slice(0,10),
+        total:res.data.length,
+        current:1,
+      });
     });
   }
 
@@ -81,13 +88,25 @@ export default class Home extends Component {
   }
 
   getAllProduced() {
-    this.setState({ ChildCategoryFood: [] });
+    ProducesService.getCurrentProduces().then((res) => {
+      this.setState({
+        produceds: res.data,
+        showProduceds:res.data.slice(0,10),
+        total:res.data.length,
+        current:1,
+      })
+      console.log(res.data)
+    });
+    console.log("da chay")
   }
-
+  
   changePage = (page,pageSize) =>  {
     var start =(page-1)*pageSize  ;
     var end =(page)*pageSize;
     this.setState({showProduceds: this.state.produceds.slice(start,end)})
+    console.log(page,pageSize)
+    console.log(this.state.produceds.slice(start,end))
+    this.setState({current: page})
   }
 
   render() {
@@ -113,6 +132,7 @@ export default class Home extends Component {
                   <Menu.Item key={cate.id} onClick={() => this.getFoodByCategory(cate.id)}>{cate.namecategory}</Menu.Item>
                 ))}
               </SubMenu>
+              
               <SubMenu key="sub3" icon={<TeamOutlined />} title="Admin">
                 <Menu.Item key="9">Thêm món ăn</Menu.Item>
                 <Menu.Item key="10">Thống kê đơn hàng</Menu.Item>
@@ -159,6 +179,7 @@ export default class Home extends Component {
                 defaultPageSize={10}
                 total={this.state.total} 
                 defaultCurrent={1} 
+                current={this.state.current}
                 showSizeChanger={false}
                 onChange={this.changePage}
                 />
