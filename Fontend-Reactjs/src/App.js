@@ -104,7 +104,7 @@ class App extends Component {
                       <img
                         className="img-item"
                         src="https://cf.shopee.vn/file/687f3967b7c2fe6a134a2c11894eea4b_tn"
-                        alt=""
+                        alt="img"
                       />
                     </div>
                       <div className="Detail">
