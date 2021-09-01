@@ -124,7 +124,20 @@ export default class Register extends Component {
   render() {
     return (
       <div class="Register-app">
-        <div class="Register-app-Group">
+      <div class="Register-app-Group">
+      <div class="area" >
+          <ul class="circles">
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+          </ul>
         <div class="page">
         <div class="content-wrapper">
         <div class="content">
@@ -240,7 +253,7 @@ export default class Register extends Component {
           </div>
           </div>
           </div>
-          
+          </div>
 
          
     );

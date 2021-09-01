@@ -18,7 +18,6 @@ import { Layout, Menu } from "antd";
 import { UserOutlined, TeamOutlined } from "@ant-design/icons";
 import authService from "../services/auth.service";
 import cartService from "../services/cart.server";
-
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
 
@@ -39,6 +38,8 @@ export default class Home extends Component {
       Message:"",
       total:0,
       current:1,
+      i:0,
+      value:0,
     };
     this.getFoodByCategory = this.getFoodByCategory.bind(this);
   }
@@ -159,7 +160,7 @@ export default class Home extends Component {
                     </Card>
                   </Col>
                 ))
-                : this.state.showProduceds.map((food) => (
+                : this.state.showProduceds.map((food,i,showProduceds) => (
                   <Col className="colums" span={4}>
                     <Card
                       className="Card-item"
@@ -170,6 +171,23 @@ export default class Home extends Component {
                       <Button type="primary" block onClick={() => this.onClickDatMon(this.state.user.id, food.id ,food.namefood,food.price,"1")}>
                         Đặt món
                       </Button>
+                      {/* <div>{i}{food.namefood}</div> */}
+        <input class="modal-btn" type="checkbox" id="modal-btn" name="modal-btn" />
+      	<label for="modal-btn">Thông tin<i class="uil uil-expand-arrows"></i></label> 		
+      	<div class="modal">		
+	      	<div class="modal-wrap">	
+	      		<p> 
+            
+            {/* <Card
+                      className="Card-item"
+                      cover={<img alt="example" src={food.linkimage} />}
+              >
+                      <Meta title={food.namefood} description={food.price} />
+                      </Card> */}
+                      <div>{i}{food.namefood}</div>
+              </p>	          		
+	      	</div>			          		
+      	</div>	
                     </Card>
                   </Col>
                 ))}
