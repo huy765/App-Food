@@ -18,6 +18,7 @@ import { Layout, Menu } from "antd";
 import { UserOutlined, TeamOutlined } from "@ant-design/icons";
 import authService from "../services/auth.service";
 import cartService from "../services/cart.server";
+
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
 
@@ -29,17 +30,15 @@ export default class Home extends Component {
 
     this.state = {
       produceds: [],
-      showProduceds:[],
+      showProduceds: [],
       category: [],
       ChildCategoryFood: [],
-      showChildCategoryFoodProduceds:[],
-      user : [],
-      currentUser:undefined,
-      Message:"",
-      total:0,
-      current:1,
-      i:0,
-      value:0,
+      showChildCategoryFoodProduceds: [],
+      user: [],
+      currentUser: undefined,
+      Message: "",
+      total: 0,
+      current: 1,
     };
     this.getFoodByCategory = this.getFoodByCategory.bind(this);
   }
@@ -52,39 +51,39 @@ export default class Home extends Component {
     const user = authService.getCurrentUser();
     this.setState({ user: user })
 
-    
+
 
     ProducesService.getCurrentProduces().then((res) => {
       this.setState({
-        produceds:res.data,
-        showProduceds:res.data.slice(0,10),
-        total:res.data.length,
-        current:1,
+        produceds: res.data,
+        showProduceds: res.data.slice(0, 10),
+        total: res.data.length,
+        current: 1,
       })
-      console.log(res.data.slice(0,10))
+      console.log(res.data.slice(0, 10))
     });
 
     CategoryService.getCurrentProduces().then((res) => {
       this.setState({ category: res.data });
     });
 
-    
+
   }
 
   getFoodByCategory(id) {
     console.log(id);
     ProducesService.getFoodByCategoryServer(id).then((res) => {
-      this.setState({ 
+      this.setState({
         produceds: res.data,
-        showProduceds:res.data.slice(0,10),
-        total:res.data.length,
-        current:1,
+        showProduceds: res.data.slice(0, 10),
+        total: res.data.length,
+        current: 1,
       });
     });
   }
 
-  onClickDatMon = (userid,foodid,foodname,price,qty) =>{
-    let itemCart = {userid:userid, foodid,foodname,price,qty}
+  onClickDatMon = (userid, foodid, foodname, price, qty, linkimage) => {
+    let itemCart = { userid: userid, foodid, foodname, price, qty, linkimage }
     cartService.addFoodByCart(itemCart);
   }
 
@@ -92,27 +91,25 @@ export default class Home extends Component {
     ProducesService.getCurrentProduces().then((res) => {
       this.setState({
         produceds: res.data,
-        showProduceds:res.data.slice(0,10),
-        total:res.data.length,
-        current:1,
+        showProduceds: res.data.slice(0, 10),
+        total: res.data.length,
+        current: 1,
       })
       console.log(res.data)
     });
     console.log("da chay")
   }
-  
-  changePage = (page,pageSize) =>  {
-    var start =(page-1)*pageSize  ;
-    var end =(page)*pageSize;
-    this.setState({showProduceds: this.state.produceds.slice(start,end)})
-    console.log(page,pageSize)
-    console.log(this.state.produceds.slice(start,end))
-    this.setState({current: page})
+
+  changePage = (page, pageSize) => {
+    var start = (page - 1) * pageSize;
+    var end = (page) * pageSize;
+    this.setState({ showProduceds: this.state.produceds.slice(start, end) })
+    this.setState({ current: page })
   }
 
   render() {
     const { collapsed } = this.state;
-    
+
     return (
       <div className="site-layout-background">
         <Layout
@@ -133,7 +130,7 @@ export default class Home extends Component {
                   <Menu.Item key={cate.id} onClick={() => this.getFoodByCategory(cate.id)}>{cate.namecategory}</Menu.Item>
                 ))}
               </SubMenu>
-              
+
               <SubMenu key="sub3" icon={<TeamOutlined />} title="Admin">
                 <Menu.Item key="9">Thêm món ăn</Menu.Item>
                 <Menu.Item key="10">Thống kê đơn hàng</Menu.Item>
@@ -160,7 +157,7 @@ export default class Home extends Component {
                     </Card>
                   </Col>
                 ))
-                : this.state.showProduceds.map((food,i,showProduceds) => (
+                : this.state.showProduceds.map((food) => (
                   <Col className="colums" span={4}>
                     <Card
                       className="Card-item"
@@ -168,41 +165,24 @@ export default class Home extends Component {
                       cover={<img alt="example" src={food.linkimage} />}
                     >
                       <Meta title={food.namefood} description={food.price} />
-                      <Button type="primary" block onClick={() => this.onClickDatMon(this.state.user.id, food.id ,food.namefood,food.price,"1")}>
+                      <Button type="primary" block onClick={() => this.onClickDatMon(this.state.user.id, food.id, food.namefood, food.price, "1", food.linkimage)}>
                         Đặt món
                       </Button>
-                      {/* <div>{i}{food.namefood}</div> */}
-        <input class="modal-btn" type="checkbox" id="modal-btn" name="modal-btn" />
-      	<label for="modal-btn">Thông tin<i class="uil uil-expand-arrows"></i></label> 		
-      	<div class="modal">		
-	      	<div class="modal-wrap">	
-	      		<p> 
-            
-            {/* <Card
-                      className="Card-item"
-                      cover={<img alt="example" src={food.linkimage} />}
-              >
-                      <Meta title={food.namefood} description={food.price} />
-                      </Card> */}
-                      <div>{i}{food.namefood}</div>
-              </p>	          		
-	      	</div>			          		
-      	</div>	
                     </Card>
                   </Col>
                 ))}
             </Row>
             <div>
-              <Pagination padding ="24px"
+              <Pagination padding="24px"
                 defaultPageSize={10}
-                total={this.state.total} 
-                defaultCurrent={1} 
+                total={this.state.total}
+                defaultCurrent={1}
                 current={this.state.current}
                 showSizeChanger={false}
                 onChange={this.changePage}
-                />
+              />
             </div>
-            
+
           </Content>
         </Layout>
       </div>

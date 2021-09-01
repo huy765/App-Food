@@ -33,12 +33,10 @@ label {
 
 .background-color {
   background-image: url(wood.png);
-  
 }
 
 @import "~antd/dist/antd.css";
 @import "./style//StyleProduced.css";
-/* @import "~icon/"; */
 
 .code-box-demo {
   text-align: center;
@@ -132,8 +130,8 @@ label {
 
 .ant-btn-block {
   width: 44%;
+  margin-left: 116px;
   margin-top: 17px;
-  margin-right: 5px;
 }
 .ant-layout-content {
   margin: 0 0;
@@ -207,12 +205,10 @@ label {
   position: absolute;
   top: 3px;
   right: 8px;
-  background-color: #e3e9ee;
   border-radius: 5px;
   height: 34px;
   width: 94px;
   padding: 0px 0px;
-  background-image: url(search.png);
 }
 
 .ant-btn > .anticon {
@@ -220,17 +216,21 @@ label {
 }
 
 .btn-search-icon {
-  color: rgb(24, 16, 16);
+  color: white;
   margin: 0px 0;
   font-size: 20px;
-  background-image: url(search.png);
 }
 
 .btn-Search:hover {
   background-color: #108ee9;
-  background-image: url(search_hover.png);
 }
 
+.ant-btn:hover,
+.ant-btn:focus,
+.ant-btn:active {
+  text-decoration: none;
+  background-color: #108ee9;
+}
 .logo {
   height: 46px;
   margin: 16px;
@@ -245,7 +245,7 @@ label {
   color: #fff;
   line-height: 48px;
   text-align: center;
-  background-image: url(wood2.jpg);;
+  background-image: url(wood2.jpg) !important;
   cursor: pointer;
   -webkit-transition: all 0.2s;
   -o-transition: all 0.2s;
@@ -261,7 +261,7 @@ label {
 }
 
 .ant-menu-dark .ant-menu-inline.ant-menu-sub {
-  background-image: url(wood2.jpg);
+  background-image: url(wood2.jpg) !important;
 }
 
 .Header-app {
@@ -279,9 +279,6 @@ label {
 
 .item-btn {
   margin-left: 10px;
-  font-weight: 600;
-  color: rgb(241, 236, 236);
-
 }
 
 li {
@@ -295,12 +292,16 @@ li {
 
 .Item-icon {
   position: absolute;
-  border: #fff;
-  right: 170x;
+  right: 200px;
   top: 18px;
-  height: 50px;
-  width: 50px;
+  max-height: 50px;
+  max-width: 50px;
   z-index: 20px;
+}
+
+.Cart {
+  max-height: 300px;
+  max-width: 360px;
 }
 
 .Cart-item {
@@ -310,33 +311,47 @@ li {
   right: 224px;
   top: 65px;
   width: 359px;
-  height: 280px;
+  max-height: 395px;
   border-radius: 3px;
+  overflow: auto;
 }
 
 .item-hover {
   cursor: pointer;
 }
 
-.item-hover:hover .Cart-item{
+.item-hover:hover .Cart-item {
   display: block;
 }
 
-.img-item{
-  height: 55px;
+.img-item {
+  max-height: 61px;
+  max-width: 87px;
+  margin-bottom: 4px;
+  margin-left: 10px;
 }
 
-.list-Item:hover{
+.img-foot-cart {
+  min-width: 95px;
+}
+
+.list-Item:hover {
   background-color: rgba(255, 131, 64, 0.9);
+  border-radius: 5px;
 }
 
-.item-Food{
+.item-Food {
   max-height: 240px;
   min-width: 203px;
   position: relative;
   margin: 0;
   display: flex;
   background-color: rgba(255, 131, 64, 0.5);
+  border-radius: 5px;
+}
+
+.btn-checkout {
+  right: 10px;
 }
 
 .group-Cart {
@@ -352,12 +367,12 @@ li {
   margin-top: 5px;
 }
 
-.Detail{
+.Detail {
   height: 60px;
   width: 100%;
 }
 
-.Detail-item{
+.Detail-item {
   display: block;
   height: 20px;
   line-height: 20px;
@@ -368,7 +383,7 @@ p {
   margin-top: 0;
   margin-bottom: 0em;
 }
-body{
+body {
   background-image: url(wood.png);
 }
 
@@ -380,11 +395,15 @@ body{
   border-style: solid;
   border-color: url(wood2.jpg);
 }
-.ant-menu-dark.ant-menu-inline .ant-menu-item, .ant-menu-dark.ant-menu-inline .ant-menu-submenu-title {
+.ant-menu-dark.ant-menu-inline .ant-menu-item,
+.ant-menu-dark.ant-menu-inline .ant-menu-submenu-title {
   width: 100%;
   background-image: url(wood2.jpg);
 }
-.ant-menu-inline.ant-menu-root .ant-menu-item > .ant-menu-title-content, .ant-menu-inline.ant-menu-root .ant-menu-submenu-title > .ant-menu-title-content {
+.ant-menu-inline.ant-menu-root .ant-menu-item > .ant-menu-title-content,
+.ant-menu-inline.ant-menu-root
+  .ant-menu-submenu-title
+  > .ant-menu-title-content {
   -ms-flex: auto;
   flex: auto;
   min-width: 0;
@@ -392,8 +411,10 @@ body{
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   background-image: url(wood.png);
+  color: black;
 }
-.ant-menu-dark.ant-menu-inline .ant-menu-item, .ant-menu-dark.ant-menu-inline .ant-menu-submenu-title {
+.ant-menu-dark.ant-menu-inline .ant-menu-item,
+.ant-menu-dark.ant-menu-inline .ant-menu-submenu-title {
   width: 100%;
   background-image: url(wood.png);
 }
@@ -401,15 +422,7 @@ body{
 .ant-pagination {
   margin: 24px 0px;
   text-align: center;
-}
-
-.ant-pagination-prev button {
-  background-image: url(previous_page.png);
-}
-
-.ant-pagination-next button {
-  background-image: url(next_page.png);
-}
-.ant-btn:focus {
-  background-image: url(search.png);
+  position: absolute;
+  bottom: -60px;
+  right: 605px;
 }
