@@ -38,6 +38,7 @@ label {
 
 @import "~antd/dist/antd.css";
 @import "./style//StyleProduced.css";
+/* @import "~icon/"; */
 
 .code-box-demo {
   text-align: center;
@@ -211,6 +212,7 @@ label {
   height: 34px;
   width: 94px;
   padding: 0px 0px;
+  background-image: url(search.png);
 }
 
 .ant-btn > .anticon {
@@ -221,10 +223,12 @@ label {
   color: white;
   margin: 0px 0;
   font-size: 20px;
+  background-image: url(search.png);
 }
 
 .btn-Search:hover {
   background-color: #108ee9;
+  background-image: url(search_hover.png);
 }
 
 .logo {
@@ -395,4 +399,15 @@ body{
 .ant-pagination {
   margin: 24px 0px;
   text-align: center;
+}
+
+.ant-pagination-prev button {
+  background-image: url(previous_page.png);
+}
+
+.ant-pagination-next button {
+  background-image: url(next_page.png);
+}
+.ant-btn:focus {
+  background-image: url(search.png);
 }
