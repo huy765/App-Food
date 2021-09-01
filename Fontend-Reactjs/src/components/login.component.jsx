@@ -83,6 +83,19 @@ export default class Login extends Component {
     return (
       <div className="Login-app">
         <div className="Login-app-Group">
+        <div class="area" >
+            <ul class="circles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+            </ul>
         <div class="page">
   <div class="container">
     <div class="left">
@@ -160,7 +173,8 @@ export default class Login extends Component {
       </div>
       </div>
       </div>
-        </div>
+      </div>
+      </div>
       </div>
     );
   }

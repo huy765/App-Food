@@ -131,8 +131,8 @@ label {
 
 .ant-btn-block {
   width: 44%;
-  margin-left: 116px;
   margin-top: 17px;
+  margin-right: 5px;
 }
 .ant-layout-content {
   margin: 0 0;
@@ -206,7 +206,7 @@ label {
   position: absolute;
   top: 3px;
   right: 8px;
-  background-color: #edf2f5;
+  background-color: #e3e9ee;
   border-radius: 5px;
   height: 34px;
   width: 94px;
@@ -218,7 +218,7 @@ label {
 }
 
 .btn-search-icon {
-  color: white;
+  color: rgb(24, 16, 16);
   margin: 0px 0;
   font-size: 20px;
 }
@@ -275,6 +275,9 @@ label {
 
 .item-btn {
   margin-left: 10px;
+  font-weight: 600;
+  color: rgb(241, 236, 236);
+
 }
 
 li {
@@ -288,7 +291,8 @@ li {
 
 .Item-icon {
   position: absolute;
-  right: 200px;
+  border: #fff;
+  right: 170x;
   top: 18px;
   height: 50px;
   width: 50px;
@@ -384,13 +388,11 @@ body{
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   background-image: url(wood.png);
-  color: black;
 }
 .ant-menu-dark.ant-menu-inline .ant-menu-item, .ant-menu-dark.ant-menu-inline .ant-menu-submenu-title {
   width: 100%;
   background-image: url(wood.png);
 }
-
 
 .ant-pagination {
   margin: 24px 0px;
