@@ -279,6 +279,8 @@ label {
 
 .item-btn {
   margin-left: 10px;
+  font-weight: 600;
+  color: rgb(241, 236, 236);
 }
 
 li {
@@ -298,26 +300,6 @@ li {
   max-width: 50px;
 }
 
-.Cart-item::after {
-  content: "";
-  height: 19px;
-  width: 96px;
-  position: absolute;
-  top: -15px;
-  right: 0px;
-  background-color: transparent;
-}
-
-.Cart-item::before {
-  content: "";
-  border-style: solid;
-  border-width: 13px 16px;
-  position: absolute;
-  top: -21px;
-  right: 17px;
-  border-color: transparent transparent var(--while-color) transparent;
-}
-
 .Cart {
   max-height: 300px;
   max-width: 360px;
@@ -326,7 +308,7 @@ li {
 .Cart-item {
   display: none;
   position: absolute;
-  background-color: rgba(255, 131, 64, 0.6);
+  background-image: url(wood.png);
   right: 224px;
   top: 52px;
   width: 359px;
@@ -355,7 +337,7 @@ li {
 }
 
 .list-Item:hover {
-  background-color: rgba(255, 131, 64, 0.9);
+  background-image: url(wood2.jpg);
   border-radius: 5px;
 }
 
@@ -365,7 +347,7 @@ li {
   position: relative;
   margin: 0;
   display: flex;
-  background-color: rgba(255, 131, 64, 0.5);
+  background-color: rgba(146, 114, 25, 0.5);
   border-radius: 5px;
 }
 
@@ -447,7 +429,12 @@ body {
 .btn-Checkout {
   margin-left: 185px !important;
   line-height: 0 !important;
+  margin-top: 0 !important;
+  position: relative;
+  top: -22px;
 }
+
+
 
 .ant-input-number-input {
   width: 100%;

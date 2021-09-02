@@ -1,0 +1,86 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: Roboto;
+}
+/*đưa danh sách ra chính giữa màn hình*/
+.bodypr{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('../wood.png');
+}
+.containerpr{
+    width:700px;
+    border-bottom: 20px solid burlywood;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+/*Thiết lập style cho thẻ h2*/
+.containerpr h2{
+    color: #fff;
+    background-image: url('../wood2.jpg');
+    padding: 10px 20px;
+    font-size: 20px;
+    font-weight: 700;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.containerpr .ulpr{
+   position: relative;
+   background: #fff;
+}
+
+.containerpr .ulpr .lipr {
+   list-style: none;
+   padding: 10px;
+   width: 100%;
+   background: #fff;
+   box-shadow: 0 5px 15px rgba(0,0,0,.1);
+   transition: transform 0.5s;
+   color: #000;
+   max-height: 100px;
+   line-height: 50px;
+   font-size: 20px;
+   font-weight: 500;
+   flex-direction: row;
+}
+.rl{
+   max-height: 70px;
+   max-width: 500px;
+   line-height: 50px;
+   font-size: 20px;
+   font-weight: 500;
+}
+.containerpr .ulpr .lipr .spanpr{
+   width: 40px;
+   height: 40px;
+   text-align: center;
+   line-height: 40px;
+   background-image: url('../wood2.jpg');
+   color: #fff;
+   display: inline-block;
+   border-radius: 50%;
+   margin-right: 40px;
+   font-size:16px;
+   font-weight: bold;
+}
+
+/* .containerpr .ulpr:hover .lipr {
+   opacity: 0.2;
+} */
+/* .containerpr .ulpr .lipr:hover{
+   transform: scale(1.1);
+   z-index: 10;
+   background-image: url('../wood.png');
+   box-shadow: 0 5px 25px rgba(0,0,0,.2);
+   color: rgb(0, 0, 0);
+   opacity: 1;
+} */
+/* .containerpr .ulpr .lipr:hover .spanpr {
+   background: #fff;
+   background-image: url('../wood2.jpg');
+} */

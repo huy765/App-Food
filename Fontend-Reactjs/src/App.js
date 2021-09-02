@@ -20,7 +20,8 @@ import Home from "./components/home.component";
 import Login from "./components/login.component.jsx";
 import Register from "./components/register.component";
 import cartService from "./services/cart.server";
-import { InputNumber, Checkbox, Space } from "antd";
+import { InputNumber} from "antd";
+import Profile from "./components/profile.component";
 
 class App extends Component {
   constructor(props) {
@@ -34,6 +35,7 @@ class App extends Component {
       produceds: [],
       collapsed: false,
       cart: [],
+      qty: undefined,
     };
   }
 
@@ -61,6 +63,11 @@ class App extends Component {
     EventBus.remove("logout");
   }
 
+  updateQtySl(id,qty){
+    this.setState({ value:qty });
+    console.log(this.state.qty)
+  }
+
   logOut() {
     AuthService.logout();
     this.setState({
@@ -73,6 +80,8 @@ class App extends Component {
   render() {
     const { currentUser } = this.state;
     const { Header, Content } = Layout;
+    const {value} = this.state;
+    console.log(value);
     return (
       <div>
         <Header className="Header-app">
@@ -96,11 +105,9 @@ class App extends Component {
               <div className="Cart-item">
                 <header>
                   <h3 className="Title-cart">Danh sách món đã chọn</h3>
-                  <div>
                     <Button className="btn-Checkout" type="primary" block>
                       Thanh toán
                     </Button>
-                  </div>
                 </header>
                 {this.state.cart.map((item) => (
                   <div className="list-Item">
@@ -115,7 +122,11 @@ class App extends Component {
                       <div className="Detail">
                         <p className="TitleFood Detail-item">{item.foodname}</p>
                         <p className="qrt Detail-item">
-                          <InputNumber min={1} max={20} defaultValue={item.qty} />
+                          <InputNumber 
+                          min={1} max={20}
+                          defaultValue={item.qty}
+                          onChange={this.setState({qty:{value}})}
+                          />
                         </p>
                         <p className="Price Detail-item">{item.price}</p>
                       </div>
@@ -135,7 +146,7 @@ class App extends Component {
           {currentUser ? (
             <div className="Header-item">
               <li>
-                <Link className="item-btn" to="/login">
+                <Link className="item-btn" to="/profile">
                   {currentUser !== undefined
                     ? currentUser.username
                     : "Đăng nhập"}
@@ -169,6 +180,7 @@ class App extends Component {
             <Route exact path={"/login"} component={Login} />
             <Route exact path={"/register"} component={Register} />
             <Route exact path={[["/home", "/"]]} component={Home} />
+            <Route exact path={"/profile"} component={Profile} />   
           </Switch>
         </Content>
       </div>

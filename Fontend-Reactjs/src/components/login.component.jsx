@@ -83,18 +83,38 @@ export default class Login extends Component {
     return (
       <div className="Login-app">
         <div className="Login-app-Group">
-          <img
-            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-            alt="profile-img"
-            className="profile-img-card"
-          />
-
+        <div class="area" >
+            <ul class="circles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+            </ul>
+        <div class="page">
+  <div class="container">
+    <div class="left">
+      <div class="login">Login</div>
+      <div class="eula">By logging in you agree to the ridiculously long terms that you didn't bother to read</div>
+    </div>
+    <div class="right">
+      <svg class="svglg" viewBox="0 0 320 300">
+        
+        <path class="pathlg" d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.00016 0.008,34.20084 -25.00016,35 -25.00016,35 h -239.99984 c 0,-0.0205 -25,4.01348 -25,38.5 0,34.48652 25,38.5 25,38.5 h 215 c 0,0 20,-0.99604 20,-25 0,-24.00396 -20,-25 -20,-25 h -190 c 0,0 -20,1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143" />
+      </svg>
+      <div class="form">
           <Form
             onSubmit={this.handleLogin}
             ref={(c) => {
               this.form = c;
             }}
           >
+            <div>
             <div className="form-group">
               <p className="form-label" htmlFor="username">
                 Username
@@ -107,7 +127,9 @@ export default class Login extends Component {
                 onChange={this.onChangeUsername}
                 validations={[required]}
               />
+              </div>
 
+              <div className="form-group">
               <p className="form-label" htmlFor="password">
                 Password
               </p>
@@ -123,7 +145,7 @@ export default class Login extends Component {
 
             <div className="form-group">
               <button
-                className="btn btn-primary btn-block btn-Login"
+                className="btn btn-block btn-Login"
                 disabled={this.state.loading}
               >
                 {this.state.loading && (
@@ -132,7 +154,7 @@ export default class Login extends Component {
                 <span>Login</span>
               </button>
             </div>
-
+            </div>
             {this.state.message && (
               <div className="form-group">
                 <div className="alert alert-danger" role="alert">
@@ -147,7 +169,12 @@ export default class Login extends Component {
               }}
             />
           </Form>
-        </div>
+          </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
       </div>
     );
   }

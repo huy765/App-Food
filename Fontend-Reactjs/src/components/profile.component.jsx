@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import AuthService from "../services/auth.service";
-
+import "../style/StyleProfile.css";
 export default class Profile extends Component {
   constructor(props) {
     super(props);
@@ -28,34 +28,45 @@ export default class Profile extends Component {
     const { currentUser } = this.state;
 
     return (
-      <div className="container">
+      <div class="bodypr">
+             
         {(this.state.userReady) ?
+        
         <div>
-        <header className="jumbotron">
-          <h3>
-            <strong>{currentUser.username}</strong> Profile
-          </h3>
-        </header>
-        <p>
-          <strong>Token:</strong>{" "}
+          <div className="containerpr">  
+          <h2>Thông Tin Người Dùng</h2>
+          <ul class="ulpr">
+        <li class="lipr">
+             <span class="spanpr">1</span>
+             <strong>Tên tài khoản:</strong>{" "}{currentUser.username} 
+        </li>
+        <li class="lipr">
+             <span class="spanpr">2</span>
+             <strong>Token:</strong>{" "}
           {currentUser.accessToken.substring(0, 20)} ...{" "}
           {currentUser.accessToken.substr(currentUser.accessToken.length - 20)}
-        </p>
-        <p>
-          <strong>Id:</strong>{" "}
-          {currentUser.id}
-        </p>
-        <p>
-          <strong>Email:</strong>{" "}
+        </li>
+        <li class="lipr">
+             <span class="spanpr">3</span>
+             <strong>Id:</strong>{" "}
+                   {currentUser.id}
+         
+        </li>
+        <li class="lipr">
+             <span class="spanpr">4</span>
+             <strong>Email:</strong>{" "}
           {currentUser.email}
-        </p>
-        <strong>Authorities:</strong>
-        <ul>
-          {currentUser.roles &&
-            currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
+        </li>
+        <li class="lipr">
+             <span class="spanpr">5</span>
+             <strong>Quyền hạn:</strong>{" "}
+          {currentUser.roles && currentUser.roles.map((role, index) => <div id="text" key={index}>{role}</div>)}
+        </li>
         </ul>
+        </div>
       </div>: null}
       </div>
+ 
     );
   }
 }
