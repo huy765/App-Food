@@ -279,6 +279,8 @@ label {
 
 .item-btn {
   margin-left: 10px;
+  font-weight: 600;
+  color: rgb(241, 236, 236);
 }
 
 li {
@@ -292,13 +294,12 @@ li {
 
 .Item-icon {
   position: absolute;
-  right: 200px;
+  right: 170x;
   top: 18px;
-  max-height: 50px;
-  max-width: 50px;
+  height: 50px;
+  width: 50px;
   z-index: 20px;
 }
-
 .Cart {
   max-height: 300px;
   max-width: 360px;
@@ -307,7 +308,7 @@ li {
 .Cart-item {
   display: none;
   position: absolute;
-  background-color: rgba(255, 131, 64, 0.6);
+  background-image: url(wood.png);
   right: 224px;
   top: 65px;
   width: 359px;
@@ -336,7 +337,7 @@ li {
 }
 
 .list-Item:hover {
-  background-color: rgba(255, 131, 64, 0.9);
+  background-image: url(wood2.jpg);
   border-radius: 5px;
 }
 
@@ -346,7 +347,7 @@ li {
   position: relative;
   margin: 0;
   display: flex;
-  background-color: rgba(255, 131, 64, 0.5);
+  background-color: rgba(146, 114, 25, 0.5);
   border-radius: 5px;
 }
 

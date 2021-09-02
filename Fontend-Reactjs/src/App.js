@@ -20,7 +20,7 @@ import Home from "./components/home.component";
 import Login from "./components/login.component.jsx";
 import Register from "./components/register.component";
 import cartService from "./services/cart.server";
-
+import Profile from "./components/profile.component";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -123,7 +123,7 @@ class App extends Component {
           {currentUser ? (
             <div className="Header-item">
               <li>
-                <Link className="item-btn" to="/login">
+                <Link className="item-btn" to="/profile">
                   {currentUser !== undefined
                     ? currentUser.username
                     : "Đăng nhập"}
@@ -157,6 +157,7 @@ class App extends Component {
             <Route exact path={"/login"} component={Login} />
             <Route exact path={"/register"} component={Register} />
             <Route exact path={[["/home", "/"]]} component={Home} />
+            <Route exact path={"/profile"} component={Profile} />   
           </Switch>
         </Content>
       </div>

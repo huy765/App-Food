@@ -18,7 +18,8 @@ import { Layout, Menu } from "antd";
 import { UserOutlined, TeamOutlined } from "@ant-design/icons";
 import authService from "../services/auth.service";
 import cartService from "../services/cart.server";
-
+import Profile from "./profile.component";
+import { Switch, Route, Link } from "react-router-dom";
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
 
@@ -51,7 +52,13 @@ export default class Home extends Component {
     const user = authService.getCurrentUser();
     this.setState({ user: user })
 
-
+    if (user) {
+      this.setState({
+        currentUser: user,
+        showModeratorBoard: user.roles.includes("ROLE_MODERATOR"),
+        showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+      });
+    }
 
     ProducesService.getCurrentProduces().then((res) => {
       this.setState({
@@ -109,7 +116,8 @@ export default class Home extends Component {
 
   render() {
     const { collapsed } = this.state;
-
+    const { currentUser } = this.state;
+    console.log(currentUser);
     return (
       <div className="site-layout-background">
         <Layout
@@ -119,7 +127,7 @@ export default class Home extends Component {
           <Sider collapsible collapsed={collapsed} onCollapse={this.onCollapse}>
             <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
               <SubMenu key="sub1" icon={<UserOutlined />} title="Người dùng">
-                <Menu.Item key="6">Thông tin tài khoản</Menu.Item>
+                <Menu.Item key="6"><Link  to={"/profile"}>Thông tin tài khoản</Link></Menu.Item>
                 <Menu.Item key="7">Tình trạng đơn hàng</Menu.Item>
                 <Menu.Item key="8">Đăng xuất</Menu.Item>
               </SubMenu>
@@ -184,6 +192,9 @@ export default class Home extends Component {
             </div>
 
           </Content>
+          <Switch>
+            <Route exact path={"/profile"} component={Profile} />           
+          </Switch>
         </Layout>
       </div>
     );

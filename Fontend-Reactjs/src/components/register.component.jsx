@@ -3,9 +3,10 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
-
-import AuthService from "../services/auth.service";
-
+import "../style/StyleRegister.css";
+import { Switch, Route, Link } from "react-router-dom";
+import AuthService from "../services/auth.service"; 
+import Login from "./login.component";
 const required = value => {
   if (!value) {
     return (
@@ -122,15 +123,45 @@ export default class Register extends Component {
 
   render() {
     return (
-      <div className="col-md-12">
-        <div className="card card-container">
-          <img
-            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-            alt="profile-img"
-            className="profile-img-card"
-          />
+      <div class="Register-app">
+      <div class="Register-app-Group">
+      <div class="area" >
+          <ul class="circles">
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+          </ul>
+        <div class="page">
+        <div class="content-wrapper">
+        <div class="content">
+            <div class="signup-wrapper shadow-box">
+                <div class="company-details "> 
+                  
+                    <div class="shadow"></div>
+                    <div class="wrapper-1">
+                        <div class="logo">
+       <div class="icon-food">
+         
+                    </div>
+                        </div>
+                        <h1 class="title">cupcake co.</h1>
+                        <div class="slogan">We deliver cupcakes to you.</div>
+                    </div>
 
+                </div>
+                <div class="signup-form ">
+                    <div class="wrapper-2">
+                        <div class="form-title">Sign up today!</div>
+            <form2>         
           <Form
+           
             onSubmit={this.handleRegister}
             ref={c => {
               this.form = c;
@@ -139,9 +170,12 @@ export default class Register extends Component {
             {!this.state.successful && (
               <div>
                 <div className="form-group">
-                  <label htmlFor="username">Username</label>
+                <p className="form-label" htmlFor="username">
+                USERNAME
+              </p>
                   <Input
                     type="text"
+                    placeholder="Lorem ipsum"  //required
                     className="form-control"
                     name="username"
                     value={this.state.username}
@@ -151,9 +185,12 @@ export default class Register extends Component {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="email">Email</label>
+                <p className="form-label" htmlFor="email">
+                EMAIL
+               </p>
                   <Input
                     type="text"
+                    placeholder="lorem@loremipsum.com" //required
                     className="form-control"
                     name="email"
                     value={this.state.email}
@@ -163,9 +200,12 @@ export default class Register extends Component {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="password">Password</label>
+                <p className="form-label" htmlFor="password">
+                PASSWORD
+                </p>
                   <Input
                     type="password"
+                    placeholder="*****" //required
                     className="form-control"
                     name="password"
                     value={this.state.password}
@@ -174,9 +214,9 @@ export default class Register extends Component {
                   />
                 </div>
 
-                <div className="form-group">
-                  <button className="btn btn-primary btn-block">Sign Up</button>
-                </div>
+               
+                <button className="signup">i want meals</button><button className="login2"><Link  to={"/login"}>Đăng Nhập</Link></button>
+
               </div>
             )}
 
@@ -200,9 +240,22 @@ export default class Register extends Component {
                 this.checkBtn = c;
               }}
             />
+          <Switch>
+            <Route exact path={"/login"} component={Login} />           
+          </Switch>
           </Form>
-        </div>
-      </div>
+          </form2> 
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+
+         
     );
   }
 }
