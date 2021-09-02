@@ -19,6 +19,7 @@ import { UserOutlined, TeamOutlined } from "@ant-design/icons";
 import authService from "../services/auth.service";
 import cartService from "../services/cart.server";
 
+
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
 
@@ -39,12 +40,17 @@ export default class Home extends Component {
       Message: "",
       total: 0,
       current: 1,
+      value: 0,
     };
     this.getFoodByCategory = this.getFoodByCategory.bind(this);
   }
 
   onCollapse = (collapsed) => {
     this.setState({ collapsed });
+  };
+
+  handleChange = value => {
+    this.setState({ value });
   };
 
   componentDidMount() {
@@ -107,9 +113,13 @@ export default class Home extends Component {
     this.setState({ current: page })
   }
 
+  onChange(value) {
+    console.log('changed', value);
+  }
+
   render() {
     const { collapsed } = this.state;
-
+    
     return (
       <div className="site-layout-background">
         <Layout
@@ -165,6 +175,7 @@ export default class Home extends Component {
                       cover={<img alt="example" src={food.linkimage} />}
                     >
                       <Meta title={food.namefood} description={food.price} />
+                      
                       <Button type="primary" block onClick={() => this.onClickDatMon(this.state.user.id, food.id, food.namefood, food.price, "1", food.linkimage)}>
                         Đặt món
                       </Button>

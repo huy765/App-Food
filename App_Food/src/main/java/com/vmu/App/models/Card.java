@@ -30,16 +30,20 @@ public class Card {
 	@Column(name = "qty")
 	int qty;
 
+	@Column(name = "linkimage")
+	String linkimage;
+
 	public Card(){
 		super();
 	}
 
-	public Card(Long userid, Long foodid,String foodname,Double price,int qty){
+	public Card(Long userid, Long foodid,String foodname,Double price,int qty,String linkimage){
 		this.userid = userid;
 		this.foodid = foodid;
 		this.foodname = foodname;
 		this.price = price;
 		this.qty = qty;
+		this.linkimage = linkimage;
 	}
 
 	public long getId() {
@@ -88,5 +92,13 @@ public class Card {
 
 	public void setUserid(Long userid) {
 		this.userid = userid;
+	}
+
+	public String getLinkimage() {
+		return linkimage;
+	}
+
+	public void setLinkimage(String linkimage) {
+		this.linkimage = linkimage;
 	}
 }

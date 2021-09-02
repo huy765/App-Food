@@ -20,6 +20,7 @@ import Home from "./components/home.component";
 import Login from "./components/login.component.jsx";
 import Register from "./components/register.component";
 import cartService from "./services/cart.server";
+import { InputNumber, Checkbox, Space } from "antd";
 
 class App extends Component {
   constructor(props) {
@@ -71,7 +72,6 @@ class App extends Component {
 
   render() {
     const { currentUser } = this.state;
-    console.log(currentUser);
     const { Header, Content } = Layout;
     return (
       <div>
@@ -96,27 +96,39 @@ class App extends Component {
               <div className="Cart-item">
                 <header>
                   <h3 className="Title-cart">Danh sách món đã chọn</h3>
+                  <div>
+                    <Button className="btn-Checkout" type="primary" block>
+                      Thanh toán
+                    </Button>
+                  </div>
                 </header>
                 {this.state.cart.map((item) => (
-                <div className="list-Item">
-                  <div className="item-Food">
-                    <div className="img">
-                      <img
-                        className="img-item"
-                        src="https://cf.shopee.vn/file/687f3967b7c2fe6a134a2c11894eea4b_tn"
-                        alt="img"
-                      />
-                    </div>
+                  <div className="list-Item">
+                    <div className="item-Food">
+                      <div className="img">
+                        <img
+                          className="img-item"
+                          src={item.linkimage}
+                          alt="img"
+                        />
+                      </div>
                       <div className="Detail">
                         <p className="TitleFood Detail-item">{item.foodname}</p>
-                        <p className="qrt Detail-item">{item.qtr}</p>
+                        <p className="qrt Detail-item">
+                          <InputNumber min={1} max={20} defaultValue={item.qty} />
+                        </p>
                         <p className="Price Detail-item">{item.price}</p>
                       </div>
-                    
+
+
+                    </div>
+
                   </div>
-                </div>
+
+
                 ))}
               </div>
+
             </span>
           </div>
 
