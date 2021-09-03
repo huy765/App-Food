@@ -8,7 +8,7 @@ import { Switch, Route, Link } from "react-router-dom";
 
 import { Layout, Button } from "antd";
 
-import { SearchOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { SearchOutlined, ShoppingCartOutlined,LeftOutlined,RightOutlined } from "@ant-design/icons";
 import "antd/dist/antd.css";
 import "./style/index.css";
 
@@ -20,7 +20,6 @@ import Home from "./components/home.component";
 import Login from "./components/login.component.jsx";
 import Register from "./components/register.component";
 import cartService from "./services/cart.server";
-import { InputNumber} from "antd";
 import Profile from "./components/profile.component";
 
 class App extends Component {
@@ -35,7 +34,7 @@ class App extends Component {
       produceds: [],
       collapsed: false,
       cart: [],
-      qty: undefined,
+      qty: 1,
     };
   }
 
@@ -63,11 +62,6 @@ class App extends Component {
     EventBus.remove("logout");
   }
 
-  updateQtySl(id,qty){
-    this.setState({ value:qty });
-    console.log(this.state.qty)
-  }
-
   logOut() {
     AuthService.logout();
     this.setState({
@@ -77,11 +71,18 @@ class App extends Component {
     });
   }
 
+  updateQty = (id,foodid,foodname,linkimage,price,qty,userid,stateMsg) => {
+    console.log(stateMsg);
+    let itemCart = {id,foodid,foodname,linkimage,price,qty,userid}
+    if (qty > 0){
+      this.setState({qty:qty});
+      cartService.updateQtyItemCart(itemCart);
+    }
+  }
+
   render() {
     const { currentUser } = this.state;
     const { Header, Content } = Layout;
-    const {value} = this.state;
-    console.log(value);
     return (
       <div>
         <Header className="Header-app">
@@ -122,11 +123,13 @@ class App extends Component {
                       <div className="Detail">
                         <p className="TitleFood Detail-item">{item.foodname}</p>
                         <p className="qrt Detail-item">
-                          <InputNumber 
-                          min={1} max={20}
-                          defaultValue={item.qty}
-                          onChange={this.setState({qty:{value}})}
-                          />
+                        <LeftOutlined onClick={() => this.updateQty(item.id,item.foodid,item.foodname,item.linkimage,item.price,item.qty-1,item.userid,"Giảm")}/>
+                        <span>
+                        {
+                          item.qty
+                        }
+                        </span>
+                        <RightOutlined onClick={() => this.updateQty(item.id,item.foodid,item.foodname,item.linkimage,item.price,item.qty+1,item.userid,"Tăng")}/>
                         </p>
                         <p className="Price Detail-item">{item.price}</p>
                       </div>

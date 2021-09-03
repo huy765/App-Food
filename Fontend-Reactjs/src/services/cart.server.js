@@ -14,6 +14,10 @@ class Cartserver {
   addFoodByCart (itemCart) {
     return axios.post(API_URL + "addCart",itemCart)
   }
+
+  updateQtyItemCart(itemCart){
+    return axios.put(API_URL + "update",itemCart)
+  }
 }
 
 export default new Cartserver();
