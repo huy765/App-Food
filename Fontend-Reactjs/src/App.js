@@ -8,7 +8,7 @@ import { Switch, Route, Link } from "react-router-dom";
 
 import { Layout, Button } from "antd";
 
-import { SearchOutlined, ShoppingCartOutlined,LeftOutlined,RightOutlined } from "@ant-design/icons";
+import { SearchOutlined, ShoppingCartOutlined, LeftOutlined, RightOutlined } from "@ant-design/icons";
 import "antd/dist/antd.css";
 import "./style/index.css";
 
@@ -21,6 +21,7 @@ import Login from "./components/login.component.jsx";
 import Register from "./components/register.component";
 import cartService from "./services/cart.server";
 import Profile from "./components/profile.component";
+import checkout from "./components/checkout.component";
 
 class App extends Component {
   constructor(props) {
@@ -38,6 +39,7 @@ class App extends Component {
     };
 
     this.updateQty = this.updateQty.bind(this);
+    this.checkoutbuton = this.checkoutbuton.bind(this);
   }
 
   componentDidMount() {
@@ -54,7 +56,7 @@ class App extends Component {
         this.setState({ cart: res.data });
       });
     }
-    
+
     EventBus.on("logout", () => {
       this.logOut();
     });
@@ -73,30 +75,39 @@ class App extends Component {
     });
   }
 
-  onClickCart(){
+  onClickCart() {
     const user = AuthService.getCurrentUser();
-    if(user){
+    if (user) {
       cartService.GetListFoodOrderByIdUser(user.id).then((res) => {
         this.setState({ cart: res.data });
       });
     }
-    
   }
 
-  updateQty = (id,foodid,foodname,linkimage,price,qty,userid,stateMsg) => {
-    let itemCart = {id,foodid,foodname,linkimage,price,qty,userid}
-    if (qty > 0){
-      this.setState({qty:qty});
-      cartService.updateQtyItemCart(itemCart).then((res)=> {
+  updateQty = (id, foodid, foodname, linkimage, price, qty, userid, stateMsg) => {
+    console.log(stateMsg);
+    let itemCart = { id, foodid, foodname, linkimage, price, qty, userid }
+    if (qty > 0) {
+      this.setState({ qty: qty });
+      cartService.updateQtyItemCart(itemCart).then((res) => {
         this.setState({ cart: res.data });
       });
     }
+  }
+
+  checkoutbuton = () => {
+    return (
+      <div>
+        <a href="/checkout"></a>
+      </div>
+
+    )
   }
 
   render() {
     const { currentUser } = this.state;
     const { Header, Content } = Layout;
-    const { cart} = this.state;
+    const { cart } = this.state;
     return (
       <div>
         <Header className="Header-app">
@@ -109,7 +120,7 @@ class App extends Component {
                 placeholder="Nhập vào nội dung muốn tìm kiếm"
               ></input>
               <Button className="btn-Search" >
-                <SearchOutlined className="btn-search-icon"  />
+                <SearchOutlined className="btn-search-icon" />
               </Button>
             </div>
           </div>
@@ -120,9 +131,12 @@ class App extends Component {
               <div className="Cart-item">
                 <header>
                   <h3 className="Title-cart">Danh sách món đã chọn</h3>
-                    <Button className="btn-Checkout" type="primary" block>
-                      Thanh toán
-                    </Button>
+                  <Button className="btn-Checkout" type="primary" block onClick={() => this.checkoutbuton()}>
+                    
+                    <Link
+                      to={{pathname: "/checkout",state: this.state.cart}}
+                    >Giỏ đồ ăn</Link>
+                  </Button>
                 </header>
                 {cart.map((item) => (
                   <div className="list-Item">
@@ -137,13 +151,13 @@ class App extends Component {
                       <div className="Detail">
                         <p className="TitleFood Detail-item">{item.foodname}</p>
                         <p className="qrt Detail-item">
-                        <LeftOutlined onClick={() => this.updateQty(item.id,item.foodid,item.foodname,item.linkimage,item.price,item.qty-1,item.userid,"Giảm")}/>
-                        <span>
-                        {
-                          item.qty
-                        }
-                        </span>
-                        <RightOutlined onClick={() => this.updateQty(item.id,item.foodid,item.foodname,item.linkimage,item.price,item.qty+1,item.userid,"Tăng")}/>
+                          <LeftOutlined onClick={() => this.updateQty(item.id, item.foodid, item.foodname, item.linkimage, item.price, item.qty - 1, item.userid, "Giảm")} />
+                          <span>
+                            {
+                              item.qty
+                            }
+                          </span>
+                          <RightOutlined onClick={() => this.updateQty(item.id, item.foodid, item.foodname, item.linkimage, item.price, item.qty + 1, item.userid, "Tăng")} />
                         </p>
                         <p className="Price Detail-item">{item.price}</p>
                       </div>
@@ -192,7 +206,8 @@ class App extends Component {
             <Route exact path={"/login"} component={Login} />
             <Route exact path={"/register"} component={Register} />
             <Route exact path={[["/home", "/"]]} component={Home} />
-            <Route exact path={"/profile"} component={Profile} />   
+            <Route exact path={"/profile"} component={Profile} />
+            <Route exact path={"/checkout"} component={checkout} />
           </Switch>
         </Content>
       </div>

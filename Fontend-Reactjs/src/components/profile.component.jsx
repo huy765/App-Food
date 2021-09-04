@@ -53,14 +53,18 @@ export default class Profile extends Component {
          
         </li>
         <li class="lipr">
-             <span class="spanpr">4</span>
+             <span class="spanpr">5</span>
              <strong>Email:</strong>{" "}
           {currentUser.email}
         </li>
         <li class="lipr">
              <span class="spanpr">5</span>
-             <strong>Quyền hạn:</strong>{" "}
-          {currentUser.roles && currentUser.roles.map((role, index) => <div id="text" key={index}>{role}</div>)}
+             <strong>Địa chỉ:</strong>{" "}
+          {currentUser.address}
+        </li>
+        <li class="lipr">
+             <span class="spanpr">6</span>
+             <strong>Quyền hạn: {currentUser.roles && currentUser.roles.map((role, index) => <span id="text" key={index}>{role}</span>)}</strong>{" "}
         </li>
         </ul>
         </div>

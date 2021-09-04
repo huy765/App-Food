@@ -63,11 +63,13 @@ public class AuthController {
 				.map(item -> item.getAuthority())
 				.collect(Collectors.toList());
 
-		return ResponseEntity.ok(new JwtResponse(jwt, 
+		return ResponseEntity.ok(new JwtResponse(jwt,
 												 userDetails.getId(), 
 												 userDetails.getUsername(), 
-												 userDetails.getEmail(), 
-												 roles));
+												 userDetails.getEmail(),
+												 roles,
+												 userDetails.getAddress()
+												 ));
 	}
 
 	@PostMapping("/signup")
@@ -75,45 +77,47 @@ public class AuthController {
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
 			return ResponseEntity
 					.badRequest()
-					.body(new MessageResponse("Error: Tên tài khoản đã được sử dụng!"));
+					.body(new MessageResponse("Lỗi: Tên tài khoản đã được sử dụng!"));
 		}
 
 		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
 			return ResponseEntity
 					.badRequest()
-					.body(new MessageResponse("Error: Email đã được sử dụng!"));
+					.body(new MessageResponse("Lỗi: Email đã được sử dụng!"));
 		}
 
 		// Create new user's account
 		User user = new User(signUpRequest.getUsername(), 
 							 signUpRequest.getEmail(),
-							 encoder.encode(signUpRequest.getPassword()));
+							 encoder.encode(signUpRequest.getPassword()),
+							 signUpRequest.getAddress()
+							 );
 
 		Set<String> strRoles = signUpRequest.getRole();
 		Set<Role> roles = new HashSet<>();
 
 		if (strRoles == null) {
 			Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-					.orElseThrow(() -> new RuntimeException("Error: Tài khoản chưa được phân quyền."));
+					.orElseThrow(() -> new RuntimeException("Lỗi: Tài khoản chưa được phân quyền."));
 			roles.add(userRole);
 		} else {
 			strRoles.forEach(role -> {
 				switch (role) {
 				case "admin":
 					Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-							.orElseThrow(() -> new RuntimeException("Error: Tài khoản chưa được phân quyền."));
+							.orElseThrow(() -> new RuntimeException("Lỗi: Tài khoản chưa được phân quyền."));
 					roles.add(adminRole);
 
 					break;
 				case "mod":
 					Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
-							.orElseThrow(() -> new RuntimeException("Error: Tài khoản chưa được phân quyền."));
+							.orElseThrow(() -> new RuntimeException("Lỗi: Tài khoản chưa được phân quyền."));
 					roles.add(modRole);
 
 					break;
 				default:
 					Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-							.orElseThrow(() -> new RuntimeException("Error: Tài khoản chưa được phân quyền."));
+							.orElseThrow(() -> new RuntimeException("Lỗi: Tài khoản chưa được phân quyền."));
 					roles.add(userRole);
 				}
 			});

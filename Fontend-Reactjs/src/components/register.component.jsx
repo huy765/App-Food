@@ -5,7 +5,7 @@ import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 import "../style/StyleRegister.css";
 import { Switch, Route, Link } from "react-router-dom";
-import AuthService from "../services/auth.service"; 
+import AuthService from "../services/auth.service";
 import Login from "./login.component";
 const required = value => {
   if (!value) {
@@ -54,11 +54,13 @@ export default class Register extends Component {
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
+    this.onChangeAddress = this.onChangeAddress.bind(this);
 
     this.state = {
       username: "",
       email: "",
       password: "",
+      address: "",
       successful: false,
       message: ""
     };
@@ -82,6 +84,12 @@ export default class Register extends Component {
     });
   }
 
+  onChangeAddress(e) {
+    this.setState({
+      address: e.target.value
+    })
+  }
+
   handleRegister(e) {
     e.preventDefault();
 
@@ -96,7 +104,8 @@ export default class Register extends Component {
       AuthService.register(
         this.state.username,
         this.state.email,
-        this.state.password
+        this.state.password,
+        this.state.address,
       ).then(
         response => {
           this.setState({
@@ -124,138 +133,154 @@ export default class Register extends Component {
   render() {
     return (
       <div class="Register-app">
-      <div class="Register-app-Group">
-      <div class="area" >
-          <ul class="circles">
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-          </ul>
-        <div class="page">
-        <div class="content-wrapper">
-        <div class="content">
-            <div class="signup-wrapper shadow-box">
-                <div class="company-details "> 
-                  
-                    <div class="shadow"></div>
-                    <div class="wrapper-1">
+        <div class="Register-app-Group">
+          <div class="area" >
+            <ul class="circles">
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+            <div class="page">
+              <div class="content-wrapper">
+                <div class="content">
+                  <div class="signup-wrapper shadow-box">
+                    <div class="company-details ">
+
+                      <div class="shadow"></div>
+                      <div class="wrapper-1">
                         <div class="logo">
-       <div class="icon-food">
-         
-                    </div>
+                          <div class="icon-food">
+
+                          </div>
                         </div>
                         <h1 class="title">cupcake co.</h1>
                         <div class="slogan">We deliver cupcakes to you.</div>
+                      </div>
+
                     </div>
-
-                </div>
-                <div class="signup-form ">
-                    <div class="wrapper-2">
+                    <div class="signup-form ">
+                      <div class="wrapper-2">
                         <div class="form-title">Sign up today!</div>
-            <form2>         
-          <Form
-           
-            onSubmit={this.handleRegister}
-            ref={c => {
-              this.form = c;
-            }}
-          >
-            {!this.state.successful && (
-              <div>
-                <div className="form-group">
-                <p className="form-label" htmlFor="username">
-                USERNAME
-              </p>
-                  <Input
-                    type="text"
-                    placeholder="Lorem ipsum"  //required
-                    className="form-control"
-                    name="username"
-                    value={this.state.username}
-                    onChange={this.onChangeUsername}
-                    validations={[required, vusername]}
-                  />
+                        <form2>
+                          <Form
+
+                            onSubmit={this.handleRegister}
+                            ref={c => {
+                              this.form = c;
+                            }}
+                          >
+                            {!this.state.successful && (
+                              <div>
+                                <div className="form-group">
+                                  <p className="form-label" htmlFor="username">
+                                    USERNAME
+                                  </p>
+                                  <Input
+                                    type="text"
+                                    placeholder="Tên đăng nhập"  //required
+                                    className="form-control"
+                                    name="username"
+                                    value={this.state.username}
+                                    onChange={this.onChangeUsername}
+                                    validations={[required, vusername]}
+                                  />
+                                </div>
+
+                                <div className="form-group">
+                                  <p className="form-label" htmlFor="password">
+                                    PASSWORD
+                                  </p>
+                                  <Input
+                                    type="password"
+                                    placeholder="Nhập vào mật khẩu" //required
+                                    className="form-control"
+                                    name="password"
+                                    value={this.state.password}
+                                    onChange={this.onChangePassword}
+                                    validations={[required, vpassword]}
+                                  />
+                                </div>
+
+                                <div className="form-group">
+                                  <p className="form-label" htmlFor="email">
+                                    EMAIL
+                                  </p>
+                                  <Input
+                                    type="text"
+                                    placeholder="Nhập vào email" //required
+                                    className="form-control"
+                                    name="email"
+                                    value={this.state.email}
+                                    onChange={this.onChangeEmail}
+                                    validations={[required, email]}
+                                  />
+                                </div>
+
+                                <div className="form-group">
+                                  <p className="form-label" htmlFor="email">
+                                    Address
+                                  </p>
+                                  <Input
+                                    type="text"
+                                    placeholder="Nhập địa chỉ" //required
+                                    className="form-control"
+                                    name="address"
+                                    value={this.state.address}
+                                    onChange={this.onChangeAddress}
+                                  />
+                                </div>
+
+                                
+
+
+                                <button className="signup">i want meals</button><button className="login2"><Link to={"/login"}>Đăng Nhập</Link></button>
+
+                              </div>
+                            )}
+
+                            {this.state.message && (
+                              <div className="form-group">
+                                <div
+                                  className={
+                                    this.state.successful
+                                      ? "alert alert-success"
+                                      : "alert alert-danger"
+                                  }
+                                  role="alert"
+                                >
+                                  {this.state.message}
+                                </div>
+                              </div>
+                            )}
+                            <CheckButton
+                              style={{ display: "none" }}
+                              ref={c => {
+                                this.checkBtn = c;
+                              }}
+                            />
+                            <Switch>
+                              <Route exact path={"/login"} component={Login} />
+                            </Switch>
+                          </Form>
+                        </form2>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-
-                <div className="form-group">
-                <p className="form-label" htmlFor="email">
-                EMAIL
-               </p>
-                  <Input
-                    type="text"
-                    placeholder="lorem@loremipsum.com" //required
-                    className="form-control"
-                    name="email"
-                    value={this.state.email}
-                    onChange={this.onChangeEmail}
-                    validations={[required, email]}
-                  />
-                </div>
-
-                <div className="form-group">
-                <p className="form-label" htmlFor="password">
-                PASSWORD
-                </p>
-                  <Input
-                    type="password"
-                    placeholder="*****" //required
-                    className="form-control"
-                    name="password"
-                    value={this.state.password}
-                    onChange={this.onChangePassword}
-                    validations={[required, vpassword]}
-                  />
-                </div>
-
-               
-                <button className="signup">i want meals</button><button className="login2"><Link  to={"/login"}>Đăng Nhập</Link></button>
-
               </div>
-            )}
+            </div>
+          </div>
+        </div>
+      </div>
 
-            {this.state.message && (
-              <div className="form-group">
-                <div
-                  className={
-                    this.state.successful
-                      ? "alert alert-success"
-                      : "alert alert-danger"
-                  }
-                  role="alert"
-                >
-                  {this.state.message}
-                </div>
-              </div>
-            )}
-            <CheckButton
-              style={{ display: "none" }}
-              ref={c => {
-                this.checkBtn = c;
-              }}
-            />
-          <Switch>
-            <Route exact path={"/login"} component={Login} />           
-          </Switch>
-          </Form>
-          </form2> 
-          </div>
-          </div>
-          </div>
-          </div>
-          </div>
-          </div>
-          </div>
-          </div>
-          </div>
 
-         
     );
   }
 }
