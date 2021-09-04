@@ -36,6 +36,8 @@ class App extends Component {
       cart: [],
       qty: 1,
     };
+
+    this.updateQty = this.updateQty.bind(this);
   }
 
   componentDidMount() {
@@ -52,7 +54,7 @@ class App extends Component {
         this.setState({ cart: res.data });
       });
     }
-
+    
     EventBus.on("logout", () => {
       this.logOut();
     });
@@ -71,18 +73,30 @@ class App extends Component {
     });
   }
 
+  onClickCart(){
+    const user = AuthService.getCurrentUser();
+    if(user){
+      cartService.GetListFoodOrderByIdUser(user.id).then((res) => {
+        this.setState({ cart: res.data });
+      });
+    }
+    
+  }
+
   updateQty = (id,foodid,foodname,linkimage,price,qty,userid,stateMsg) => {
-    console.log(stateMsg);
     let itemCart = {id,foodid,foodname,linkimage,price,qty,userid}
     if (qty > 0){
       this.setState({qty:qty});
-      cartService.updateQtyItemCart(itemCart);
+      cartService.updateQtyItemCart(itemCart).then((res)=> {
+        this.setState({ cart: res.data });
+      });
     }
   }
 
   render() {
     const { currentUser } = this.state;
     const { Header, Content } = Layout;
+    const { cart} = this.state;
     return (
       <div>
         <Header className="Header-app">
@@ -94,14 +108,14 @@ class App extends Component {
                 className="Input-Search-text"
                 placeholder="Nhập vào nội dung muốn tìm kiếm"
               ></input>
-              <Button className="btn-Search">
-                <SearchOutlined className="btn-search-icon" />
+              <Button className="btn-Search" >
+                <SearchOutlined className="btn-search-icon"  />
               </Button>
             </div>
           </div>
           <div className="Cart">
             <span className="item-hover">
-              <ShoppingCartOutlined className="Item-icon" />
+              <ShoppingCartOutlined className="Item-icon" onClick={this.onClickCart()} />
 
               <div className="Cart-item">
                 <header>
@@ -110,7 +124,7 @@ class App extends Component {
                       Thanh toán
                     </Button>
                 </header>
-                {this.state.cart.map((item) => (
+                {cart.map((item) => (
                   <div className="list-Item">
                     <div className="item-Food">
                       <div className="img">
@@ -133,13 +147,8 @@ class App extends Component {
                         </p>
                         <p className="Price Detail-item">{item.price}</p>
                       </div>
-
-
                     </div>
-
                   </div>
-
-
                 ))}
               </div>
 

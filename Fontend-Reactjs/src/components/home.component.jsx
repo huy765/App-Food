@@ -20,10 +20,13 @@ import authService from "../services/auth.service";
 import cartService from "../services/cart.server";
 import Profile from "./profile.component";
 import { Switch, Route, Link } from "react-router-dom";
+
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
 
 const { Meta } = Card;
+
+
 
 export default class Home extends Component {
   constructor(props) {
@@ -41,6 +44,7 @@ export default class Home extends Component {
       total: 0,
       current: 1,
       value: 0,
+      cart: [],
     };
     this.getFoodByCategory = this.getFoodByCategory.bind(this);
   }
@@ -96,7 +100,9 @@ export default class Home extends Component {
 
   onClickDatMon = (userid, foodid, foodname, price, qty, linkimage) => {
     let itemCart = { userid: userid, foodid, foodname, price, qty, linkimage }
-    cartService.addFoodByCart(itemCart);
+    cartService.addFoodByCart(itemCart).then((res)=>{
+      this.setState({cart:res.data});
+    });
   }
 
   getAllProduced() {
@@ -107,9 +113,7 @@ export default class Home extends Component {
         total: res.data.length,
         current: 1,
       })
-      console.log(res.data)
     });
-    console.log("da chay")
   }
 
   changePage = (page, pageSize) => {

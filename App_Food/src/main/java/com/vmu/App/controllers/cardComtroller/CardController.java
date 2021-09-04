@@ -5,14 +5,12 @@ import java.util.Optional;
 
 import com.vmu.App.models.Card;
 import com.vmu.App.models.User;
-import com.vmu.App.payload.response.CartResponse;
 import com.vmu.App.repository.UserRepository;
 import com.vmu.App.repository.RepoCard.CartReponsitory;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,7 +42,7 @@ public class CardController {
 	}
 
 	@PostMapping(value="/addCart")
-	public CartResponse postMethodName(@RequestBody Card card) {
+	public List<Card> postMethodName(@RequestBody Card card) {
 
 		Long id = Long.parseLong(card.getUserid().toString());
 
@@ -54,12 +52,12 @@ public class CardController {
 			
 			cardRepository.save(card);
 		}
-
-		return new CartResponse("Xảy ra lỗi");
+		List<Card> listItemCart = cardRepository.findAll();
+		return listItemCart;
 	}
 
 	@PutMapping(value="/update")
-	public ResponseEntity<Card> updateMethodName(@RequestBody Card carditem) {
+	public List<Card> updateMethodName(@RequestBody Card carditem) {
 
 		Optional<Card> cart = cardRepository.findById(carditem.getId());
 
@@ -75,6 +73,7 @@ public class CardController {
 			cartUpdate.setUserid(carditem.getUserid());
 		}
 		cardRepository.save(cartUpdate);
-		return ResponseEntity.ok(cartUpdate);
+		List<Card> listItemCart = cardRepository.findAll();
+		return listItemCart;
 	}
 }
