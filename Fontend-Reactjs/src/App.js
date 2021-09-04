@@ -23,6 +23,7 @@ import cartService from "./services/cart.server";
 import Profile from "./components/profile.component";
 import checkout from "./components/checkout.component";
 
+import Addproduced from "./components/addproduced.component";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -93,15 +94,6 @@ class App extends Component {
         this.setState({ cart: res.data });
       });
     }
-  }
-
-  checkoutbuton = () => {
-    return (
-      <div>
-        <a href="/checkout"></a>
-      </div>
-
-    )
   }
 
   render() {
@@ -208,6 +200,8 @@ class App extends Component {
             <Route exact path={[["/home", "/"]]} component={Home} />
             <Route exact path={"/profile"} component={Profile} />
             <Route exact path={"/checkout"} component={checkout} />
+            <Route exact path={"/profile"} component={Profile} /> 
+            <Route exact path={"/addproduced"} component={Addproduced} />    
           </Switch>
         </Content>
       </div>

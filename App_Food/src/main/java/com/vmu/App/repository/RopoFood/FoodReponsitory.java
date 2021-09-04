@@ -12,4 +12,5 @@ public interface FoodReponsitory extends JpaRepository<Food,Long> {
     List<Food> findByIdCategory(Long idCategory);
     List<Food> findByNamefood(String namefood);
     List<Food> findById(Set<Long> id);
+    List<Food> findAll();
 }
