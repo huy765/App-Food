@@ -20,7 +20,7 @@ import authService from "../services/auth.service";
 import cartService from "../services/cart.server";
 import Profile from "./profile.component";
 import { Switch, Route, Link } from "react-router-dom";
-
+import Addproduced from "./addproduced.component";
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
 
@@ -152,7 +152,7 @@ export default class Home extends Component {
               </SubMenu>
 
               <SubMenu key="sub3" icon={<TeamOutlined />} title="Admin">
-                <Menu.Item key="9">Thêm món ăn</Menu.Item>
+                <Menu.Item key="9"><Link  to={"/addproduced"}>Thêm món ăn</Link></Menu.Item>
                 <Menu.Item key="10">Thống kê đơn hàng</Menu.Item>
                 <Menu.Item key="11">Thống kê doanh thu</Menu.Item>
                 <Menu.Item key="12">Đăng xuất</Menu.Item>
@@ -206,7 +206,8 @@ export default class Home extends Component {
 
           </Content>
           <Switch>
-            <Route exact path={"/profile"} component={Profile} />           
+            <Route exact path={"/profile"} component={Profile} /> 
+            <Route exact path={"/addproduced"} component={Addproduced} />            
           </Switch>
         </Layout>
       </div>

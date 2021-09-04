@@ -51,6 +51,19 @@ input[type=text] {
   text-align: center;
   width: 100%;
 }
+input[type=number] {
+
+  margin-bottom: 50px;
+  background-color: white;
+  border: none;
+  border-bottom: 5px solid #e4e4e4;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 30%;
+  display: block;
+  text-align: center;
+  width: 100%;
+}
 input[type=password] {
   margin-bottom: 50px;
   background-color: white;

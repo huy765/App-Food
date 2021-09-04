@@ -10,6 +10,10 @@ class produce {
   getFoodByCategoryServer(id){
     return axios.get(`${API_URL}producedById?id=${id}`);
   }
+
+  addProduced(food){
+    return axios.post(API_URL + "addproduced",food)
+  }
 }
 
 export default new produce();
