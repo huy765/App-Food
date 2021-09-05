@@ -40,7 +40,6 @@ class App extends Component {
     };
 
     this.updateQty = this.updateQty.bind(this);
-    this.checkoutbuton = this.checkoutbuton.bind(this);
   }
 
   componentDidMount() {
@@ -123,7 +122,7 @@ class App extends Component {
               <div className="Cart-item">
                 <header>
                   <h3 className="Title-cart">Danh sách món đã chọn</h3>
-                  <Button className="btn-Checkout" type="primary" block onClick={() => this.checkoutbuton()}>
+                  <Button className="btn-Checkout" type="primary" block>
                     
                     <Link
                       to={{pathname: "/checkout",state: this.state.cart}}
