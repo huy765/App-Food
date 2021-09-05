@@ -1,73 +1,85 @@
-.checkout-app{
-    position: relative;
-    top: 65px;
-    display: flex;
-    justify-content: space-around;
+.checkout-app {
+  position: relative;
+  top: 65px;
+  display: flex;
+  justify-content: space-around;
 }
 
-.list-Item-checkout{
-    width: 69%;
+.list-Item-checkout {
+  width: 69%;
 }
 
-.info-user{
-    width: 629px;
-    height: 500px;
+.info-user {
+  width: 629px;
+  height: 500px;
 }
 
-.info-cart{
-    min-width: 658px;
+.info-cart {
+  min-width: 658px;
 }
 
-.img-checkout{
-    min-width: 115px;
+.img-checkout {
+  min-width: 115px;
 }
 
 .img-item-checkout {
-    max-height: 61px;
-    max-width: 87px;
-    min-width: 87px;
-    margin-bottom: 4px;
-    margin-left: 10px;
-    margin-top: -28px;
+  max-height: 61px;
+  max-width: 87px;
+  min-width: 87px;
+  margin-bottom: 4px;
+  margin-left: 10px;
+  margin-top: -28px;
 }
 
 .item-Food {
-    max-height: 89px;
-    min-width: 203px;
-    display: flex;
-    background-color: rgba(146, 114, 25, 0.5);
-    border-radius: 5px;
+  max-height: 89px;
+  min-width: 203px;
+  display: flex;
+  background-color: rgba(146, 114, 25, 0.5);
+  border-radius: 5px;
 }
 
 .list-Item-checkout:hover {
-    background-image: url(/static/media/wood2.48fa5f9e.jpg);
-    border-radius: 5px;
+  background-image: url(/static/media/wood2.48fa5f9e.jpg);
+  border-radius: 5px;
 }
 
-.total-Payment{
-    background-image: url(/static/media/wood2.48fa5f9e.jpg);
+.total-Payment {
+  background-image: url(/static/media/wood2.48fa5f9e.jpg);
+  position: relative;
+  width: 453px;
+  height: 48px;
 }
 
-.result{
-    margin-left: 85px;
+.result {
+  margin-left: 85px;
 }
 
-.delete{
-    margin: 5px 15px;
-    color: lawngreen;
+.delete {
+  margin: 5px 15px;
+  color: lawngreen;
 }
 
-.total-Payment{
-    width: 453px;
-    height: 88px;
+.containerpr {
+  width: 627px;
+  height: 497px;
+  background-image: url(/static/media/wood2.48fa5f9e.jpg);
 }
 
-.containerpr{
-    width: 627px;
-    height: 497px;
-    background-image: url(/static/media/wood2.48fa5f9e.jpg);
+.containerpr .ulpr .lipr {
+  background-image: url(/static/media/wood2.48fa5f9e.jpg);
 }
 
-.containerpr .ulpr .lipr{
-    background-image: url(/static/media/wood2.48fa5f9e.jpg);
+.total {
+  position: relative;
+  top: -25px;
+  right: -80px;
+  font-size: 20px;
+}
+
+.btn-page-Checkout {
+  position: relative;
+  top: -353px;
+  right: -347px;
+  width: 20%;
 }

@@ -55,12 +55,15 @@ export default class Register extends Component {
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.onChangeAddress = this.onChangeAddress.bind(this);
-
+    this.onChangeNameDisplay = this.onChangeNameDisplay.bind(this);
+    this.onChangePhone = this.onChangePhone.bind(this);
     this.state = {
       username: "",
       email: "",
       password: "",
       address: "",
+      namedisplay:"",
+      phone:"",
       successful: false,
       message: ""
     };
@@ -90,6 +93,18 @@ export default class Register extends Component {
     })
   }
 
+  onChangeNameDisplay(e) {
+    this.setState({
+      namedisplay: e.target.value
+    })
+  }
+
+  onChangePhone(e) {
+    this.setState({
+      phone: e.target.value
+    })
+  }
+
   handleRegister(e) {
     e.preventDefault();
 
@@ -106,6 +121,8 @@ export default class Register extends Component {
         this.state.email,
         this.state.password,
         this.state.address,
+        this.state.namedisplay,
+        this.state.phone,
       ).then(
         response => {
           this.setState({
@@ -167,7 +184,7 @@ export default class Register extends Component {
                     </div>
                     <div class="signup-form ">
                       <div class="wrapper-2">
-                        <div class="form-title">Sign up today!</div>
+                        <div class="form-title">Đăng ký ngay</div>
                         <form2>
                           <Form
 
@@ -177,7 +194,22 @@ export default class Register extends Component {
                             }}
                           >
                             {!this.state.successful && (
-                              <div>
+                              <div className="app-input">
+
+                                <div className="form-group">
+                                  <p className="form-label" htmlFor="namedisplay">
+                                    Họ và tên:
+                                  </p>
+                                  <Input
+                                    type="text"
+                                    placeholder="Nhập vào họ và tên" //required
+                                    className="form-control"
+                                    name="namedisplay"
+                                    value={this.state.namedisplay}
+                                    onChange={this.onChangeNameDisplay}
+                                  />
+                                </div>
+
                                 <div className="form-group">
                                   <p className="form-label" htmlFor="username">
                                     USERNAME
@@ -224,6 +256,20 @@ export default class Register extends Component {
                                 </div>
 
                                 <div className="form-group">
+                                  <p className="form-label" htmlFor="phone">
+                                    Phone
+                                  </p>
+                                  <Input
+                                    type="text"
+                                    placeholder="Nhập vào số điện thoại" //required
+                                    className="form-control"
+                                    name="phone"
+                                    value={this.state.phone}
+                                    onChange={this.onChangePhone}
+                                  />
+                                </div>
+
+                                <div className="form-group">
                                   <p className="form-label" htmlFor="email">
                                     Address
                                   </p>
@@ -237,7 +283,7 @@ export default class Register extends Component {
                                   />
                                 </div>
 
-                                
+
 
 
                                 <button className="signup">i want meals</button><button className="login2"><Link to={"/login"}>Đăng Nhập</Link></button>

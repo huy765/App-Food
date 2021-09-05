@@ -275,6 +275,7 @@ label {
 
 .Header-item {
   display: flex;
+  margin-top: 3px;
 }
 
 .item-btn {

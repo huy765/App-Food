@@ -339,6 +339,29 @@ input::placeholder {
     text-align: initial;
     padding: 0;
     position: absolute;
-    top: -34px;
+    top: -27px;
+  }
+
+  .signup-wrapper .signup-form .wrapper-2 {
+    margin-top: 118px !important;
+  }
+
+  .form-label {
+    height: 0px;
+    width: 165px;
+    margin-top: 0;
+    margin-left: 11px;
+    font-size: small;
+    font-weight: 600;
+    line-height: 38px;
+  }
+
+  .form-group {
+    margin-bottom: -33px;
+  }
+
+  .app-input{
+    position: relative;
+    top: -50px;
   }
 }

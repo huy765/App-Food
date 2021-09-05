@@ -3,6 +3,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 import "../style/checkout.css"
 import cartService from "../services/cart.server";
 import AuthService from "../services/auth.service";
+import { Button } from "antd";
 
 class checkout extends Component {
 
@@ -30,9 +31,9 @@ class checkout extends Component {
 
     componentDidMount() {
         const currentUser = AuthService.getCurrentUser();
-        
-        if(currentUser){
-            this.setState({currentUser: currentUser,userReady: true});
+
+        if (currentUser) {
+            this.setState({ currentUser: currentUser, userReady: true });
         }
 
         let sumresult = 0
@@ -65,13 +66,18 @@ class checkout extends Component {
                                 <ul class="ulpr">
                                     <li class="lipr">
                                         <span class="spanpr">1</span>
-                                        <strong>Tên tài khoản:</strong>{" "}{this.state.currentUser.username}
+                                        <strong>Họ và tên:</strong>{" "}
+                                        {this.state.currentUser.namedisplay}
+
                                     </li>
+
                                     <li class="lipr">
                                         <span class="spanpr">2</span>
-                                        <strong>Id:</strong>{" "}
-                                        {this.state.currentUser.id}
+                                        <strong>Phone:</strong>{" "}
+                                        {this.state.currentUser.phone}
+
                                     </li>
+
                                     <li class="lipr">
                                         <span class="spanpr">3</span>
                                         <strong>Email:</strong>{" "}
@@ -81,10 +87,6 @@ class checkout extends Component {
                                         <span class="spanpr">4</span>
                                         <strong>Địa chỉ:</strong>{" "}
                                         {this.state.currentUser.address}
-                                    </li>
-                                    <li class="lipr">
-                                        <span class="spanpr">5</span>
-                                        <strong>Quyền hạn: {this.state.currentUser.roles && this.state.currentUser.roles.map((role, index) => <span id="text" key={index}>{role}</span>)}</strong>{" "}
                                     </li>
                                 </ul>
                             </div>
@@ -122,10 +124,14 @@ class checkout extends Component {
                         </div>
                     ))}
                     <div className="total-Payment">
-                        Tổng thanh toán:
-                        {this.state.totalPayment}
-                        đ
+                        <strong className="total">
+                            Tổng thanh toán:{this.state.totalPayment}đ
+                        </strong>
+
                     </div>
+                    <Button className="btn-page-Checkout" type="primary" block>
+                        Thanh toán
+                    </Button>
                 </div>
             </div>
         );

@@ -40,14 +40,20 @@ public class User {
 
 	private String address;
 
+	private String namedisplay;
+
+	private String phone;
+
 	public User() {
 	}
 
-	public User(String username, String email, String password,String address) {
+	public User(String username, String email, String password,String address,String namedisplay,String phone) {
 		this.username = username;
 		this.email = email;
 		this.password = password;
 		this.address = address;
+		this.namedisplay = namedisplay;
+		this.phone = phone;
 	}
 
 	public Long getId() {
@@ -89,6 +95,23 @@ public class User {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
+	public String getNamedisplay() {
+		return namedisplay;
+	}
+
+	public void setNamedisplay(String namedisplay) {
+		this.namedisplay = namedisplay;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
 
 	public Set<Role> getRoles() {
 		return roles;

@@ -27,15 +27,20 @@ public class UserDetailsImpl implements UserDetails {
 	private Collection<? extends GrantedAuthority> authorities;
 
 	private String address;
+	private String namedisplay;
+	private String phone;
 
 	public UserDetailsImpl(Long id, String username, String email, String password,
-			Collection<? extends GrantedAuthority> authorities,String address) {
+			Collection<? extends GrantedAuthority> authorities,String address,String namedisplay,String phone) {
 		this.id = id;
 		this.username = username;
 		this.email = email;
 		this.password = password;
 		this.authorities = authorities;
 		this.address = address;
+		this.namedisplay = namedisplay;
+		this.phone = phone;
+		
 	}
 
 	public static UserDetailsImpl build(User user) {
@@ -49,7 +54,11 @@ public class UserDetailsImpl implements UserDetails {
 				user.getEmail(),
 				user.getPassword(), 
 				authorities,
-				user.getAddress());
+				user.getAddress(),
+				user.getNamedisplay(),
+				user.getPhone()
+				);
+				
 	}
 
 	@Override
@@ -81,6 +90,22 @@ public class UserDetailsImpl implements UserDetails {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getNamedisplay() {
+		return namedisplay;
+	}
+
+	public void setNamedisplay(String namedisplay) {
+		this.namedisplay = namedisplay;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	@Override

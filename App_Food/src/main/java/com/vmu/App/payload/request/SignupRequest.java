@@ -21,6 +21,11 @@ public class SignupRequest {
     private String password;
 
     private String address;
+
+
+    private String namedisplay;
+
+    private String phone;
   
     public String getUsername() {
         return username;
@@ -53,6 +58,22 @@ public class SignupRequest {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public String getNamedisplay() {
+		return namedisplay;
+	}
+
+	public void setNamedisplay(String namedisplay) {
+		this.namedisplay = namedisplay;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
     
     public Set<String> getRole() {
       return this.role;

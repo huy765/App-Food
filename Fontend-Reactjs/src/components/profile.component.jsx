@@ -9,15 +9,19 @@ export default class Profile extends Component {
     this.state = {
       redirect: null,
       userReady: false,
-      currentUser: { username: "" }
+      currentUser: { username: "" },
     };
   }
 
   componentDidMount() {
     const currentUser = AuthService.getCurrentUser();
 
+    console.log(currentUser);
+
     if (!currentUser) this.setState({ redirect: "/home" });
-    this.setState({ currentUser: currentUser, userReady: true })
+    this.setState({ currentUser: currentUser, userReady: true})
+
+
   }
 
   render() {
@@ -40,18 +44,21 @@ export default class Profile extends Component {
                   <span class="spanpr">1</span>
                   <strong>Tên tài khoản:</strong>{" "}{currentUser.username}
                 </li>
+
                 <li class="lipr">
                   <span class="spanpr">2</span>
-                  <strong>Token:</strong>{" "}
-                  {currentUser.accessToken.substring(0, 20)} ...{" "}
-                  {currentUser.accessToken.substr(currentUser.accessToken.length - 20)}
-                </li>
-                <li class="lipr">
-                  <span class="spanpr">3</span>
-                  <strong>Id:</strong>{" "}
-                  {currentUser.id}
+                  <strong>Họ và tên:</strong>{" "}
+                  {currentUser.namedisplay}
 
                 </li>
+                
+                <li class="lipr">
+                  <span class="spanpr">3</span>
+                  <strong>Phone:</strong>{" "}
+                  {currentUser.phone}
+
+                </li>
+
                 <li class="lipr">
                   <span class="spanpr">5</span>
                   <strong>Email:</strong>{" "}
