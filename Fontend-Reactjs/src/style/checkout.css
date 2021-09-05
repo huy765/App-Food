@@ -5,25 +5,24 @@
     justify-content: space-around;
 }
 
-.list-Item{
+.list-Item-checkout{
     width: 69%;
 }
 
 .info-user{
     width: 629px;
-    height: 200px;
-    border: 1px solid red;
+    height: 500px;
 }
 
 .info-cart{
     min-width: 658px;
 }
 
-.img{
+.img-checkout{
     min-width: 115px;
 }
 
-.img-item {
+.img-item-checkout {
     max-height: 61px;
     max-width: 87px;
     min-width: 87px;
@@ -40,6 +39,15 @@
     border-radius: 5px;
 }
 
+.list-Item-checkout:hover {
+    background-image: url(/static/media/wood2.48fa5f9e.jpg);
+    border-radius: 5px;
+}
+
+.total-Payment{
+    background-image: url(/static/media/wood2.48fa5f9e.jpg);
+}
+
 .result{
     margin-left: 85px;
 }
@@ -47,4 +55,19 @@
 .delete{
     margin: 5px 15px;
     color: lawngreen;
+}
+
+.total-Payment{
+    width: 453px;
+    height: 88px;
+}
+
+.containerpr{
+    width: 627px;
+    height: 497px;
+    background-image: url(/static/media/wood2.48fa5f9e.jpg);
+}
+
+.containerpr .ulpr .lipr{
+    background-image: url(/static/media/wood2.48fa5f9e.jpg);
 }

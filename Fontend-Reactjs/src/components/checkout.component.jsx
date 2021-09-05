@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { LeftOutlined, RightOutlined,DeleteOutlined } from "@ant-design/icons";
+import { DeleteOutlined } from "@ant-design/icons";
 import "../style/checkout.css"
 import cartService from "../services/cart.server";
+import AuthService from "../services/auth.service";
 
 class checkout extends Component {
 
@@ -9,7 +10,10 @@ class checkout extends Component {
         super(props)
 
         this.state = {
-            cart: this.props.location.state
+            cart: this.props.location.state,
+            currentUser: undefined,
+            userReady: false,
+            totalPayment: 0
         }
     }
 
@@ -24,32 +28,78 @@ class checkout extends Component {
         }
     }
 
-    sumresult(){
+    componentDidMount() {
+        const currentUser = AuthService.getCurrentUser();
+        
+        if(currentUser){
+            this.setState({currentUser: currentUser,userReady: true});
+        }
+
         let sumresult = 0
-        this.state.cart.map((item)=>(
+        this.state.cart.map((item) => (
             sumresult = Number(sumresult) + Number(item.qty * item.price)
         ))
-        console.log(sumresult);
+        this.setState({ totalPayment: sumresult })
+    }
+
+    sumresult() {
+        let sumresult = 0
+        this.state.cart.map((item) => (
+            sumresult = Number(sumresult) + Number(item.qty * item.price)
+        ))
+        this.setState({ totalPayment: sumresult })
+
     }
 
 
     render() {
-        
         return (
             <div className="checkout-app">
 
                 <div className="info-user">
+                    {(this.state.userReady) ?
 
+                        <div>
+                            <div className="containerpr">
+                                <h2>Thông Tin Người Nhận</h2>
+                                <ul class="ulpr">
+                                    <li class="lipr">
+                                        <span class="spanpr">1</span>
+                                        <strong>Tên tài khoản:</strong>{" "}{this.state.currentUser.username}
+                                    </li>
+                                    <li class="lipr">
+                                        <span class="spanpr">2</span>
+                                        <strong>Id:</strong>{" "}
+                                        {this.state.currentUser.id}
+                                    </li>
+                                    <li class="lipr">
+                                        <span class="spanpr">3</span>
+                                        <strong>Email:</strong>{" "}
+                                        {this.state.currentUser.email}
+                                    </li>
+                                    <li class="lipr">
+                                        <span class="spanpr">4</span>
+                                        <strong>Địa chỉ:</strong>{" "}
+                                        {this.state.currentUser.address}
+                                    </li>
+                                    <li class="lipr">
+                                        <span class="spanpr">5</span>
+                                        <strong>Quyền hạn: {this.state.currentUser.roles && this.state.currentUser.roles.map((role, index) => <span id="text" key={index}>{role}</span>)}</strong>{" "}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div> : null}
 
                 </div>
 
                 <div className="info-cart">
+
                     {this.state.cart.map((item) => (
-                        <div className="list-Item">
+                        <div className="list-Item-checkout">
                             <div className="item-Food">
-                                <div className="img">
+                                <div className="img-checkout">
                                     <img
-                                        className="img-item"
+                                        className="img-item-checkout"
                                         src={item.linkimage}
                                         alt="img"
                                     />
@@ -57,23 +107,25 @@ class checkout extends Component {
                                 <div className="Detail">
                                     <p className="TitleFood Detail-item">{item.foodname}</p>
                                     <p className="qrt Detail-item">
-                                        <LeftOutlined onClick={() => this.updateQty(item.id, item.foodid, item.foodname, item.linkimage, item.price, item.qty - 1, item.userid, "Giảm")} />
-                                        <span>
+                                        <span>Số lượng:
                                             {
                                                 item.qty
                                             }
                                         </span>
-                                        <RightOutlined onClick={() => this.updateQty(item.id, item.foodid, item.foodname, item.linkimage, item.price, item.qty + 1, item.userid, "Tăng")} />
                                     </p>
                                     <p className="Price Detail-item">{item.price} {
                                         <strong className="result">Tổng:{item.qty * item.price}</strong>
                                     }</p>
                                 </div>
-                                <DeleteOutlined className="delete"/>
+                                <DeleteOutlined className="delete" />
                             </div>
                         </div>
                     ))}
-                    <button onClick={this.sumresult()}>click</button>
+                    <div className="total-Payment">
+                        Tổng thanh toán:
+                        {this.state.totalPayment}
+                        đ
+                    </div>
                 </div>
             </div>
         );

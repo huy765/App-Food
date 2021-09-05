@@ -330,7 +330,9 @@ li {
   max-width: 87px;
   margin-bottom: 4px;
   margin-left: 10px;
+  min-width: 88px;
 }
+
 
 .img-foot-cart {
   min-width: 95px;
