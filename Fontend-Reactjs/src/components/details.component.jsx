@@ -9,11 +9,14 @@ import { } from "@ant-design/icons";
 
 
 import { Button } from "antd";
+import { Image } from "antd";
 
 import { Layout, Menu } from "antd";
 import { UserOutlined, TeamOutlined } from "@ant-design/icons";
 import authService from "../services/auth.service";
-import { Link } from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
+
+import Home from "../components/home.component";
 
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
@@ -106,12 +109,14 @@ export default class Details extends Component {
                 <Menu.Item key="8">Đăng xuất</Menu.Item>
               </SubMenu>
 
-              <SubMenu key="sub2" icon={<TeamOutlined />} title="Menu">
-                <Menu.Item onClick={() => this.getAllProduced()}>Hiển thị toàn bộ món ăn</Menu.Item>
-                {this.state.category.map((cate) => (
-                  <Menu.Item key={cate.id} onClick={() => this.getFoodByCategory(cate.id)}>{cate.namecategory}</Menu.Item>
-                ))}
-              </SubMenu>
+              <Link to = "/home">
+                <SubMenu key="sub2" icon={<TeamOutlined />} title="Menu">
+                  <Menu.Item onClick={() => this.getAllProduced()}>Hiển thị toàn bộ món ăn</Menu.Item>
+                  {this.state.category.map((cate) => (
+                    <Menu.Item key={cate.id} onClick={() => this.getFoodByCategory(cate.id)}>{cate.namecategory}</Menu.Item>
+                  ))}
+                </SubMenu>
+              </Link>
 
               <SubMenu key="sub3" icon={<TeamOutlined />} title="Admin">
                 <Menu.Item key="9">Thêm món ăn</Menu.Item>
@@ -125,7 +130,8 @@ export default class Details extends Component {
             <div className="small-details-container single-details-product">
                 <div className="row-details">
                     <div className="col-2-details">
-                        <img src="https://camnanghaiphong.vn/upload/camnanghaiphong/images/1212.jpg" />
+                      <Image src="https://camnanghaiphong.vn/upload/camnanghaiphong/images/1212.jpg" ></Image>
+                        {/* <img src="https://camnanghaiphong.vn/upload/camnanghaiphong/images/1212.jpg" /> */}
                     </div>
                     <div className="col-2-details KichCo">
                         <h1>{this.props.foodname}</h1>
@@ -142,6 +148,9 @@ export default class Details extends Component {
             ))
             } */}
           </Content>
+          <Switch>           
+            <Route exact path={"/home"} component={Home} />     
+          </Switch>
         </Layout>
       </div>
     );
