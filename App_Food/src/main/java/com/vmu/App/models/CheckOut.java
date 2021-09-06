@@ -27,6 +27,9 @@ public class CheckOut {
     @Column(name = "hotennguoihan")
 	private String hotennguoihan;
 
+    @Column(name = "idcart")
+    private Long idcart;
+
     @Column(name = "foodid")
     private Long foodid;
 
@@ -52,11 +55,12 @@ public class CheckOut {
         super();
     }
 
-    public CheckOut(String datecheckout,String diachinhan,String sdtnhanhang,String hotennguoihan,Long foodid,String foodname,String linkimage,int qty,Double price,Long userid,Double tonggiatri){
+    public CheckOut(String datecheckout,String diachinhan,String sdtnhanhang,String hotennguoihan,Long idcart,Long foodid,String foodname,String linkimage,int qty,Double price,Long userid,Double tonggiatri){
         this.datecheckout = datecheckout;
         this.diachinhan = diachinhan;
         this.sdtnhanhang = sdtnhanhang;
         this.hotennguoihan = hotennguoihan;
+        this.idcart = idcart;
         this.foodid = foodid;
         this.foodname = foodname;
         this.linkimage = linkimage;
@@ -102,6 +106,13 @@ public class CheckOut {
     }
     public void setHotennguoihan(String hotennguoihan) {
         this.hotennguoihan = hotennguoihan;
+    }
+
+    public Long getIdcart() {
+        return idcart;
+    }
+    public void setIdcart(Long idcart) {
+        this.idcart = idcart;
     }
     public Long getFoodid() {
         return foodid;

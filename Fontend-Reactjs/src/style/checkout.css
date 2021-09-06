@@ -78,8 +78,9 @@
 }
 
 .btn-page-Checkout {
-  position: relative;
-  top: -353px;
-  right: -347px;
-  width: 20%;
+  width: 152px;
+  margin: 0 !important;
+  position: fixed;
+  top: 66px;
+  right: 24px;
 }

@@ -3,6 +3,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 import "../style/checkout.css"
 import cartService from "../services/cart.server";
 import AuthService from "../services/auth.service";
+import checkoutServer from "../services/checkout.service";
 import { Button } from "antd";
 
 class checkout extends Component {
@@ -50,6 +51,16 @@ class checkout extends Component {
         ))
         this.setState({ totalPayment: sumresult })
 
+    }
+
+    orderFood = () => {
+        var today = new Date();
+        var date = today.getDate() + '/' + (today.getMonth()+1) + '/' + today.getFullYear();
+        for (const food of this.state.cart) {
+            let item = {datecheckout: date,diachinhan: this.state.currentUser.address,sdtnhanhang:this.state.currentUser.phone,hotennguoihan:this.state.currentUser.namedisplay, idcart:food.id,foodid:food.foodid,foodname:food.foodname,linkimage:food.linkimage,qty:food.qty,price:food.price,userid:food.userid,tonggiatri:this.state.totalPayment}
+            checkoutServer.createOrder(item);
+            this.setState({cart:[]});
+        }
     }
 
 
@@ -129,7 +140,7 @@ class checkout extends Component {
                         </strong>
 
                     </div>
-                    <Button className="btn-page-Checkout" type="primary" block>
+                    <Button className="btn-page-Checkout" type="primary" block onClick={() => this.orderFood()}>
                         Thanh toán
                     </Button>
                 </div>

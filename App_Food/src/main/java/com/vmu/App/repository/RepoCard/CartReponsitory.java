@@ -14,6 +14,4 @@ public interface CartReponsitory extends JpaRepository<Card, Long> {
     Optional<Card> findById(Long id);
 
     List<Card> findByUserid(Long userid);
-
-    
 }
