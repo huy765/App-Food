@@ -1,0 +1,70 @@
+.small-details-container    {
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px 0px 0px 0px;
+}
+.row-details   {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.col-2-details img  {
+    max-width: 100%;
+    padding: 50px 0;
+}
+.single-details-product .col-2-details img ,.single-details-product .KichCo{
+    /* padding: 0; */
+    height: 100%;
+    width: 100%;
+}
+.single-details-product .col-2-details  {
+    padding: 20px;
+}
+.col-2-details {
+    flex-basis: 50%;
+    line-height: 60px;
+    margin: 25px 0;
+}
+.col-2-details h1   {
+    font-size: 50px;
+    line-height: 60px;
+    margin: 25px 0;
+    text-align: center;
+}
+.single-details-product select  {
+    display: block;
+    padding: 10px;
+    margin-top: 20px;
+}
+.single-details-product h4  {
+    margin: 20px 0;
+    font-size: 22px;
+    font-weight: bold;
+}
+.single-details-product input   {
+    width: 56px;
+    height: 56px;
+    padding-left: 20px;
+    font-size: 20px;
+    border: 0px solid #ff523b;
+    color: black;
+    background-color: aqua;
+}
+input:focus {
+    outline: none;
+}
+.btnThemVaoGio  {
+    display: inline-block;
+    background-color: #ff523b;
+    color: #fff;
+    margin: 30px 0;
+    border-radius: 23px;
+    /* transition: background; */
+}
+.btnThemVaoGio:hover    {
+    background: #f55a00;
+}
+.single-details-product p  {
+    color: black;
+}

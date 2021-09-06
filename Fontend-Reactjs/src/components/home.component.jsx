@@ -21,6 +21,8 @@ import cartService from "../services/cart.server";
 import Profile from "./profile.component";
 import { Switch, Route, Link } from "react-router-dom";
 import Addproduced from "./addproduced.component";
+import Details from "./details.component";
+
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
 
@@ -105,6 +107,11 @@ export default class Home extends Component {
     });
   }
 
+  onClickChiTiet = ( foodid, foodname, price, qty, linkimage) => {
+    let MonChon = { foodid, foodname, price, qty, linkimage }
+    console.log( MonChon)
+  }
+
   getAllProduced() {
     ProducesService.getCurrentProduces().then((res) => {
       this.setState({
@@ -179,17 +186,20 @@ export default class Home extends Component {
                 ))
                 : this.state.showProduceds.map((food) => (
                   <Col className="colums" span={4}>
-                    <Card
-                      className="Card-item"
-                      hoverable
-                      cover={<img alt="example" src={food.linkimage} />}
-                    >
-                      <Meta title={food.namefood} description={food.price} />
-                      
-                      <Button type="primary" block onClick={() => this.onClickDatMon(this.state.user.id, food.id, food.namefood, food.price, "1", food.linkimage)}>
-                        Đặt món
-                      </Button>
-                    </Card>
+                    <Link to ={"/details"}>
+                      <Card
+                        className="Card-item"
+                        hoverable
+                        cover={<img alt="example" src={food.linkimage} />}
+                        onClick={() => this.onClickChiTiet(food.id, food.namefood, food.price, "1", food.linkimage)}
+                      >
+                        <Meta title={food.namefood} description={food.price} />
+                        
+                        <Button type="primary" block onClick={() => this.onClickDatMon(this.state.user.id, food.id, food.namefood, food.price, "1", food.linkimage)}>
+                          Đặt món
+                        </Button>
+                      </Card>
+                      </Link>
                   </Col>
                 ))}
             </Row>
@@ -208,6 +218,7 @@ export default class Home extends Component {
           <Switch>
             <Route exact path={"/profile"} component={Profile} /> 
             <Route exact path={"/addproduced"} component={Addproduced} />            
+            <Route exact path={"/details"} component={Details} />     
           </Switch>
         </Layout>
       </div>
