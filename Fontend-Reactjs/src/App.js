@@ -104,7 +104,11 @@ class App extends Component {
     return (
       <div>
         <Header className="Header-app">
-          <div className="Header-item">Icon</div>
+        <Link to ={"/home"}>
+          <div className="Header-item">
+            <img alt="Logo" className="Logo" src={"https://i.imgur.com/H2CbALV.png"}/>
+          </div>
+        </Link>
 
           <div>
             <div className="Input-Search">

@@ -170,6 +170,12 @@ label {
   color: white;
 }
 
+.Logo {
+  height: 62px ;
+  width: 78px ;
+  margin-top: -1.5px;
+}
+
 .Input-Search {
   position: relative;
   top: 5px;
