@@ -22,6 +22,7 @@ const vnamefood = value => {
       );
     }
   };
+
 export default class Addproduced extends Component {
   constructor(props) {
     super(props);
@@ -34,11 +35,11 @@ export default class Addproduced extends Component {
 
     this.state = {
       produceds: [],
-      // namefood = "",
-      // price = "",
-      // detail = "",
-      // idCategory = "",
-      // linkimage = "",
+      namefood : "",
+      price : "",
+      detail : "",
+      idCategory : "",
+      linkimage : "",
       successful: false,
       message: ""
     };
@@ -76,9 +77,7 @@ export default class Addproduced extends Component {
 
   onClickAdd = (namefood, price, detail, idCategory, linkimage) => {
     let food = {namefood, price, detail, idCategory, linkimage}
-    produceService.addProduced(food).then((res)=>{
-      this.setState({produceds:res.data});
-    });
+      this.setState({produceds:food});
   }
 
   handleAddproduced(e) {
@@ -93,7 +92,7 @@ export default class Addproduced extends Component {
 
     if (this.checkBtn.context._errors.length === 0) {
      produceService.addProduced(
-      this.produceds
+      this.state.produceds
       ).then(
         response => {
           this.setState({
@@ -166,11 +165,11 @@ export default class Addproduced extends Component {
               <div>
                 <div className="form-group">
                 <p className="form-label" htmlFor="namefood">
-                Namefood
+                Tên món:
               </p>
                   <Input
                     type="text"
-                    placeholder="Lorem ipsum"  //required
+                    placeholder="Nhập tên món ăn" 
                     className="form-control"
                     name="namefood"
                     // value={this.state.namefood}
@@ -181,14 +180,13 @@ export default class Addproduced extends Component {
 
                 <div className="form-group">
                 <p className="form-label" htmlFor="price">
-                Price
+                Giá
                </p>
                   <Input
                     type="number"
-                    placeholder="0000.000 đ" //required
+                    placeholder="0000.000 đ"
                     className="form-control"
                     name="price"
-                    // value={this.state.price}
                     onChange={this.onChangePrice}
                     validations={[required, vnamefood]}
                   />
@@ -196,14 +194,13 @@ export default class Addproduced extends Component {
 
                 <div className="form-group">
                 <p className="form-label" htmlFor="detail">
-                Detail
+                Mô tả:
                 </p>
                   <Input
                     type="text"
-                    placeholder="*****" //required
+                    placeholder="Mô tả món ăn"
                     className="form-control"
                     name="detail"
-                    // value={this.state.detail}
                     onChange={this.onChangeDetail}
                     validations={[required, vnamefood]}
                   />
@@ -211,34 +208,31 @@ export default class Addproduced extends Component {
 
                 <div className="form-group">
                 <p className="form-label" htmlFor="idCategory">
-                IdCategory
+                Danh mục:
                 </p>
                   <Input
                     type="number"
-                    placeholder="*****" //required
+                    placeholder="Danh mục món"
                     className="form-control"
                     name="idCategory"
-                    // value={this.state.idCategory}
                     onChange={this.onChangeIdCategory}
                     validations={[required, vnamefood]}
                   />
                 </div>
                 <div className="form-group">
-                <p className="form-label" htmlFor="linkname">
-                linkname
+                <p className="form-label" htmlFor="linkimage">
+                Hình ảnh:
                 </p>
                   <Input
                     type="text"
-                    placeholder="*****" //required
+                    placeholder="Link hình ảnh"
                     className="form-control"
-                    name="linkname"
-                    // value={this.state.linkimage}
-                    onChange={this.onChangedetail}
+                    name="linkimage"
+                    onChange={this.onChangeLinkimage}
                     validations={[required, vnamefood]}
                   />
                 </div>
-                <button className="signup" onClick={() => this.onClickAdd(this.namefood, this.price, this.detail, this.idCategory, this.linkimage)}>Thêm món ăn</button>
-                
+                <button className="signup" onClick={() => this.onClickAdd(this.state.namefood, this.state.price, this.state.detail, this.state.idCategory, this.state.linkimage)}>Thêm món ăn</button>
               </div>
             )}
 

@@ -123,7 +123,7 @@ export default class Details extends Component {
             </Menu>
           </Sider>
           <Content>
-            <div className="small-details-container single-details-product">
+            <div className="small-details-container single-details-product">  
               {
                 this.state.MonChon.map((item) => (
                   <div className="row-details">

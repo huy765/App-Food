@@ -33,6 +33,7 @@ public class FoodController {
         Long idCategory = Long.parseLong(id);
         return foodReponsitory.findByIdCategory(idCategory);
     }
+
 	@PostMapping(value="/addproduced")
     public List<Food> postListFood(@RequestBody Food food) {
         if (!food.getNamefood().isEmpty() && !food.getPrice().isEmpty() && !food.getDetail().isEmpty()  && !food.getLinkimage().isEmpty()){
@@ -43,8 +44,8 @@ public class FoodController {
           entity.setIdCategory(food.getIdCategory());
           entity.setLinkimage(food.getLinkimage());
           foodReponsitory.save(entity);
+          System.out.println(entity);
         }	
-        //return foodReponsitory.findAll();
         List<Food> listItemFood = foodReponsitory.findAll();
 		return listItemFood;
       }
