@@ -1,0 +1,191 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
+.Add-app {
+  background: white;
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.Add-app-Group {
+  margin-top: 8%;
+  background: white;
+  position: fixed;
+  height: 554px;
+  width: 1600px;
+  border-radius: 10px;
+  align-items: center;
+}
+.add-wrapper .company-details {
+  background: url(https://tronhouse.com/assets/data/editor/source/10-tips-chup-anh-mon-an-trong-ngon-mat-va-hap-dan-nhat/chup-anh-mon-an.jpg);
+  background-size: cover;
+  position: relative;
+}
+.add-wrapper.shadow-box {
+  max-height: 1000px;
+  max-width: 1000px;
+}
+
+.add-wrapper .company-details:before {
+  content: "";
+  position: absolute;
+  display: block;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.add-wrapper .company-details .wrapper-1 {
+  position: relative;
+  padding-bottom: 10px;
+  padding-top: 22px;
+}
+.add-wrapper .company-details .logo {
+  padding: 0 20px;
+  width: 20%;
+  margin: 0 auto;
+}
+.add-wrapper .company-details .logo .icon-food {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/182774/food.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 38px;
+  height: 38px;
+  margin: 0 auto;
+}
+.add-wrapper .company-details .title {
+  padding: 20px;
+  width: 74%;
+  margin: 0 auto;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 600;
+  font-size: 2em;
+  text-shadow: 1px 1px #4b4a4a;
+  text-align: center;
+}
+.add-wrapper .company-details .slogan {
+  display: none;
+}
+
+.add-wrapper .add-form .wrapper-2 {
+  padding: 14px 20px;
+  margin: 30px 80px;
+}
+.add-wrapper .add-form .form-title {
+  font-size: 1.5em;
+  color: #d60ca7;
+  padding: 5px;
+  text-align: center;
+}
+.add-wrapper .add-form .form .content-item {
+  text-transform: uppercase;
+  color: #a19f9c;
+  font-size: 0.7em;
+  letter-spacing: 1px;
+  margin-top: 35px;
+  text-align: center;
+}
+.add-wrapper .add-form .form input[type="text"],
+.add-wrapper .add-form .form input[type="password"] {
+  border: none;
+  border-bottom: 1px solid #e4e4e4;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: block;
+
+  text-align: center;
+  width: 100%;
+}
+.add-wrapper .add-form .add {
+  background-color: #d60ca7;
+  color: white;
+  text-decoration: none;
+  font-size: 1em;
+  font-weight: 600;
+  border-radius: 5px;
+  width: 150px;
+  max-height: 80px;
+  max-width: 150px;
+  line-height: 80px;
+}
+.add-wrapper .add-form .login2 {
+  color: #d60ca7;
+  background-color: #ffffff;
+  border: none;
+  text-decoration: none;
+  font-size: 1em;
+  font-weight: 600;
+  width: 150px;
+  max-height: 80px;
+  max-width: 150px;
+  line-height: 80px;
+}
+
+@media (min-width: 200px) {
+  .add-wrapper .add-form .wrapper-2 {
+    margin: 30px 23px;
+  }
+
+  .add-wrapper .company-details .title {
+    width: 90%;
+    font-size: 1.5em;
+  }
+}
+
+@media (min-width: 700px) {
+  .add-wrapper .company-details,
+  .add-wrapper .add-form {
+    width: 50%;
+  }
+  .add-wrapper {
+    display: flex;
+    max-width: 700px;
+    margin: 0 auto;
+    margin-top: 5%;
+  }
+  .add-wrapper .company-details .wrapper-1 {
+    padding-bottom: 150px;
+    padding-top: 160px;
+  }
+  .add-wrapper .company-details .slogan {
+    padding: 0 20px;
+    width: 70%;
+    margin: 0 auto;
+    color: #fff;
+    font-size: 1.2em;
+    text-align: center;
+    text-shadow: 1px 1px #4b4a4a;
+    display: block;
+  }
+  .add-wrapper .company-details .title {
+    width: 76%;
+  }
+  .add-wrapper .add-form .wrapper-2 {
+    padding: 50px 40px;
+    margin: 0;
+  }
+
+  .add-wrapper .add-form .form .content-item {
+    text-align: initial;
+  }
+  .add-wrapper .add-form .form input[type="text"],
+  .add-wrapper .add-form .form input[type="password"] {
+    text-align: initial;
+  }
+  .add-wrapper .add-form .form-title {
+    text-align: initial;
+    padding: 0;
+    position: absolute;
+    top: -27px;
+  }
+
+  .add-wrapper .add-form .wrapper-2 {
+    margin-top: 118px !important;
+  }
+}

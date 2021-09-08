@@ -177,8 +177,8 @@ export default class Register extends Component {
 
                           </div>
                         </div>
-                        <h1 class="title">cupcake co.</h1>
-                        <div class="slogan">We deliver cupcakes to you.</div>
+                        <h1 class="title">FAST FOOD</h1>
+                        <div class="slogan">--Đăng ký--</div>
                       </div>
 
                     </div>

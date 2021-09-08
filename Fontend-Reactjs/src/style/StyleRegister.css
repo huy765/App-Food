@@ -2,8 +2,8 @@
 @import url("https://fonts.googleapis.com/css?family=Exo:400,700");
 
 .area {
-  background: #acaa8d;
-  background: -webkit-linear-gradient(to left, #d9dacf, #8d8b74);
+  background: #9b9a94;
+  background: -webkit-linear-gradient(to left, #ffffff, #f0ecc6);
   width: 100%;
   height: 100%;
 }
@@ -166,7 +166,7 @@ p {
 }
 
 .signup-wrapper .company-details {
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/182774/cupcakes.jpg);
+  background: url(https://file.hstatic.net/200000201143/file/chup-do-an__1__223f315554d649228a59ac97c5a51045_grande.jpg);
   background-size: cover;
   position: relative;
 }

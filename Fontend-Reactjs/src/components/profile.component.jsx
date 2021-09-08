@@ -32,11 +32,11 @@ export default class Profile extends Component {
     const { currentUser } = this.state;
 
     return (
+ 
+        
       <div class="bodypr">
-
+      <div class="pagepr">
         {(this.state.userReady) ?
-
-          <div>
             <div className="containerpr">
               <h2>Thông Tin Người Dùng</h2>
               <ul class="ulpr">
@@ -74,10 +74,9 @@ export default class Profile extends Component {
                   <strong>Quyền hạn: {currentUser.roles && currentUser.roles.map((role, index) => <span id="text" key={index}>{role}</span>)}</strong>{" "}
                 </li>
               </ul>
-            </div>
           </div> : null}
       </div>
-
+      </div>
     );
   }
 }

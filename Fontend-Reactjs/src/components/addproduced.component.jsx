@@ -118,8 +118,8 @@ export default class Addproduced extends Component {
 
   render() {
     return (
-        <div class="Addproduced-app">
-        <div class="Addproduced-app-Group">
+        <div class="Add-app">
+        <div class="Add-app-Group">
         <div class="area" >
             <ul class="circles">
                     <li></li>
@@ -136,8 +136,8 @@ export default class Addproduced extends Component {
           <div class="page">
           <div class="content-wrapper">
           <div class="content">
-              <div class="signup-wrapper shadow-box">
-                  <div class="company-details "> 
+              <div class="add-wrapper shadow-box">
+                  <div class="company-details"> 
                     
                       <div class="shadow"></div>
                       <div class="wrapper-1">
@@ -146,12 +146,12 @@ export default class Addproduced extends Component {
            
                       </div>
                           </div>
-                          <h1 class="title">cupcake co.</h1>
-                          <div class="slogan">We deliver cupcakes to you.</div>
+                          <h1 class="title">FAST FOOD</h1>
+                          <div class="slogan">Thêm món ăn</div>
                       </div>
   
                   </div>
-                  <div class="signup-form ">
+                  <div class="add-form ">
                       <div class="wrapper-2">
                           <div class="form-title">Thêm món ăn</div>
               <form2> 
@@ -232,7 +232,7 @@ export default class Addproduced extends Component {
                     validations={[required, vnamefood]}
                   />
                 </div>
-                <button className="signup" onClick={() => this.onClickAdd(this.state.namefood, this.state.price, this.state.detail, this.state.idCategory, this.state.linkimage)}>Thêm món ăn</button>
+                <button className="add" onClick={() => this.onClickAdd(this.state.namefood, this.state.price, this.state.detail, this.state.idCategory, this.state.linkimage)}>Thêm món ăn</button>
               </div>
             )}
 
