@@ -1,4 +1,4 @@
-@import '~antd/dist/antd.css';
+@import "~antd/dist/antd.css";
 .rowItem {
   margin-top: 28px;
   margin-left: -37px;
@@ -188,22 +188,29 @@
   margin-bottom: 4px;
 }
 
-.site-layout{
-    position: relative;
+.site-layout {
+  position: relative;
 }
 
-.btn-controlles{
-    position: absolute;
+.btn-controlles {
+  position: absolute;
 }
 
 .card-container.card {
-    position: absolute;
-    max-width: 350px !important;
-    padding: 40px 40px;
-    top: -600px;
-    left: 530px;
+  position: absolute;
+  max-width: 350px !important;
+  padding: 40px 40px;
+  top: -600px;
+  left: 530px;
 }
 
-.inputqtr{
+.inputqtr {
   color: aqua;
+}
+
+.child-item-food {
+  position: absolute;
+  height: 257px;
+  width: 215px;
+  top: 0px;
 }

@@ -35,12 +35,9 @@ export default class Details extends Component {
       showChildCategoryFoodProduceds: [],
       user: [],
       currentUser: undefined,
-      Message: "",
-      total: 0,
       current: 1,
       value: 0,
-      cart: [],
-      MonChon:[],
+      MonChon: this.props.location.state,
     };
     this.getFoodByCategory = this.getFoodByCategory.bind(this);
   }
@@ -91,10 +88,9 @@ export default class Details extends Component {
   }
 
 
-
   render() {
     const { collapsed } = this.state;
-    
+
     return (
       <div className="site-layout-background">
         <Layout
@@ -104,12 +100,12 @@ export default class Details extends Component {
           <Sider collapsible collapsed={collapsed} onCollapse={this.onCollapse}>
             <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
               <SubMenu key="sub1" icon={<UserOutlined />} title="Người dùng">
-                <Menu.Item key="6"><Link  to={"/profile"}>Thông tin tài khoản</Link></Menu.Item>
+                <Menu.Item key="6"><Link to={"/profile"}>Thông tin tài khoản</Link></Menu.Item>
                 <Menu.Item key="7">Tình trạng đơn hàng</Menu.Item>
                 <Menu.Item key="8">Đăng xuất</Menu.Item>
               </SubMenu>
 
-              <Link to = "/home">
+              <Link to="/home">
                 <SubMenu key="sub2" icon={<TeamOutlined />} title="Menu">
                   <Menu.Item onClick={() => this.getAllProduced()}>Hiển thị toàn bộ món ăn</Menu.Item>
                   {this.state.category.map((cate) => (
@@ -128,28 +124,27 @@ export default class Details extends Component {
           </Sider>
           <Content>
             <div className="small-details-container single-details-product">
-                <div className="row-details">
+              {
+                this.state.MonChon.map((item) => (
+                  <div className="row-details">
                     <div className="col-2-details">
-                      <Image src="https://camnanghaiphong.vn/upload/camnanghaiphong/images/1212.jpg" ></Image>
-                        {/* <img src="https://camnanghaiphong.vn/upload/camnanghaiphong/images/1212.jpg" /> */}
+                      <Image src={item.linkimage} ></Image>
                     </div>
                     <div className="col-2-details KichCo">
-                        <h1>{this.props.foodname}</h1>
-                        <h4>$29</h4>
-                        <Button className="btnThemVaoGio">Thêm Vào Giỏ</Button>
-                        <Button className="btnThemVaoGio">Yêu thích</Button>
-                        <h3>Mô tả :</h3>
+                      <h1>{item.foodname}</h1>
+                      <h4>{item.price}</h4>
+                      <h4>{item.detail}</h4>
+                      <Button className="btnThemVaoGio">Thêm Vào Giỏ</Button>
+                      {/* <Button className="btnThemVaoGio">Yêu thích</Button> */}
+                      <h3>Mô tả :</h3>
                     </div>
-                </div>
+                  </div>
+                ))
+              }
             </div>
-            {/* {this.state.MonChon.length > 0
-            ? this.state.MonChon.map((food) => (
-              <h1>{food.foodname}</h1>
-            ))
-            } */}
           </Content>
-          <Switch>           
-            <Route exact path={"/home"} component={Home} />     
+          <Switch>
+            <Route exact path={"/home"} component={Home} />
           </Switch>
         </Layout>
       </div>

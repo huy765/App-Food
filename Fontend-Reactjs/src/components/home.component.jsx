@@ -47,6 +47,7 @@ export default class Home extends Component {
       current: 1,
       value: 0,
       cart: [],
+      itemfood: [],
     };
     this.getFoodByCategory = this.getFoodByCategory.bind(this);
   }
@@ -78,7 +79,6 @@ export default class Home extends Component {
         total: res.data.length,
         current: 1,
       })
-      console.log(res.data.slice(0, 10))
     });
 
     CategoryService.getCurrentProduces().then((res) => {
@@ -102,14 +102,15 @@ export default class Home extends Component {
 
   onClickDatMon = (userid, foodid, foodname, price, qty, linkimage) => {
     let itemCart = { userid: userid, foodid, foodname, price, qty, linkimage }
-    cartService.addFoodByCart(itemCart).then((res)=>{
-      this.setState({cart:res.data});
+    cartService.addFoodByCart(itemCart).then((res) => {
+      this.setState({ cart: res.data });
     });
   }
 
-  onClickChiTiet = ( foodid, foodname, price, qty, linkimage) => {
-    let MonChon = { foodid, foodname, price, qty, linkimage }
-    console.log( MonChon)
+  onClickChiTiet = (foodid, foodname, price, detail, linkimage) => {
+    let food = { foodid, foodname, price, detail, linkimage }
+    this.state.itemfood.push(food);
+    console.log(this.state.itemfood);
   }
 
   getAllProduced() {
@@ -135,9 +136,10 @@ export default class Home extends Component {
   }
 
   render() {
-    const { collapsed } = this.state;
     
+    const { collapsed } = this.state;
     return (
+
       <div className="site-layout-background">
         <Layout
           className="site-layout-background"
@@ -146,7 +148,7 @@ export default class Home extends Component {
           <Sider collapsible collapsed={collapsed} onCollapse={this.onCollapse}>
             <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
               <SubMenu key="sub1" icon={<UserOutlined />} title="Người dùng">
-                <Menu.Item key="6"><Link  to={"/profile"}>Thông tin tài khoản</Link></Menu.Item>
+                <Menu.Item key="6"><Link to={"/profile"}>Thông tin tài khoản</Link></Menu.Item>
                 <Menu.Item key="7">Tình trạng đơn hàng</Menu.Item>
                 <Menu.Item key="8">Đăng xuất</Menu.Item>
               </SubMenu>
@@ -159,7 +161,7 @@ export default class Home extends Component {
               </SubMenu>
 
               <SubMenu key="sub3" icon={<TeamOutlined />} title="Admin">
-                <Menu.Item key="9"><Link  to={"/addproduced"}>Thêm món ăn</Link></Menu.Item>
+                <Menu.Item key="9"><Link to={"/addproduced"}>Thêm món ăn</Link></Menu.Item>
                 <Menu.Item key="10">Thống kê đơn hàng</Menu.Item>
                 <Menu.Item key="11">Thống kê doanh thu</Menu.Item>
                 <Menu.Item key="12">Đăng xuất</Menu.Item>
@@ -175,8 +177,13 @@ export default class Home extends Component {
                       className="Card-item"
                       key={food.id}
                       hoverable
-                      cover={<img alt="example" src={food.linkimage} />}
+                      cover={<img alt="example" src={food.linkimage}/>}
+
                     >
+                      <Link className="child-item-food"
+                        onClick={() => this.onClickChiTiet(food.id, food.namefood, food.price, food.detail, food.linkimage)}
+                        to={{ pathname: "/details", state: this.state.itemfood }}
+                      ></Link>
                       <Meta title={food.namefood} description={food.price} />
                       <Button type="primary" block>
                         Đặt món
@@ -186,20 +193,22 @@ export default class Home extends Component {
                 ))
                 : this.state.showProduceds.map((food) => (
                   <Col className="colums" span={4}>
-                    <Link to ={"/details"}>
-                      <Card
-                        className="Card-item"
-                        hoverable
-                        cover={<img alt="example" src={food.linkimage} />}
-                        onClick={() => this.onClickChiTiet(food.id, food.namefood, food.price, "1", food.linkimage)}
-                      >
-                        <Meta title={food.namefood} description={food.price} />
-                        
-                        <Button type="primary" block onClick={() => this.onClickDatMon(this.state.user.id, food.id, food.namefood, food.price, "1", food.linkimage)}>
-                          Đặt món
-                        </Button>
-                      </Card>
-                      </Link>
+                    <Card
+                      className="Card-item"
+                      hoverable
+                      cover={<img alt="example" src={food.linkimage}/>}
+
+                    >
+                      <Link className="child-item-food"
+                        onClick={() => this.onClickChiTiet(food.id, food.namefood, food.price, food.detail, food.linkimage)}
+                        to={{ pathname: "/details", state: this.state.itemfood }}
+                      ></Link>
+                      <Meta title={food.namefood} description={food.price} />
+
+                      <Button type="primary" block onClick={() => this.onClickDatMon(this.state.user.id, food.id, food.namefood, food.price, "1", food.linkimage)}>
+                        Đặt món
+                      </Button>
+                    </Card>
                   </Col>
                 ))}
             </Row>
@@ -216,9 +225,9 @@ export default class Home extends Component {
 
           </Content>
           <Switch>
-            <Route exact path={"/profile"} component={Profile} /> 
-            <Route exact path={"/addproduced"} component={Addproduced} />            
-            <Route exact path={"/details"} component={Details} />     
+            <Route exact path={"/profile"} component={Profile} />
+            <Route exact path={"/addproduced"} component={Addproduced} />
+            <Route exact path={"/details"} component={Details} />
           </Switch>
         </Layout>
       </div>
