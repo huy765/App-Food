@@ -4,6 +4,9 @@ import Input from "react-validation/build/input";
 import "../style/StyleAddproduced.css";
 import produceService from "../services/produce.service";
 import CheckButton from "react-validation/build/button";
+import { Card } from "antd";
+import { Button } from "antd";
+
 const required = value => {
   if (!value) {
     return (
@@ -146,8 +149,21 @@ export default class Addproduced extends Component {
 
                           </div>
                         </div>
-                        <h1 class="title">FAST FOOD</h1>
-                        <div class="slogan">Thêm món ăn</div>
+                        <h1 class="title">Thẻ demo</h1>
+                        <div class="slogan">
+                      <Card 
+                      className="Card-add"
+                      hoverable
+                      cover={<img class="imgadd" alt="example" src={this.state.linkimage}/>}
+
+                    >
+                       <div class="titleadd">{this.state.namefood}</div> 
+                       <div class="descriptionadd">{this.state.price} </div>
+                      <Button type="primary" block>
+                        Đặt món
+                      </Button>
+                    </Card>
+                    </div>
                       </div>
 
                     </div>

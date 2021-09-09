@@ -19,6 +19,7 @@
   background: url(https://tronhouse.com/assets/data/editor/source/10-tips-chup-anh-mon-an-trong-ngon-mat-va-hap-dan-nhat/chup-anh-mon-an.jpg);
   background-size: cover;
   position: relative;
+  align-items: center;
 }
 .add-wrapper.shadow-box {
   max-height: 1000px;
@@ -42,7 +43,6 @@
 
 .add-wrapper .company-details .wrapper-1 {
   position: relative;
-  padding-bottom: 10px;
   padding-top: 22px;
   margin-top: -159px;
 }
@@ -74,6 +74,31 @@
   display: none;
 }
 
+.Card-add {
+  height: 400px;
+  width: 310px;
+  align-items: center;
+}
+
+.ant-card-cover .imgadd {
+  border-radius: 9px 9px 9px 9px;
+  height: 244px;
+  background-image: url(https://thanggianhome.files.wordpress.com/2015/01/fast-food-3.jpg);
+}
+.descriptionadd {
+  color: rgba(0, 0, 0, 0.45);
+  margin-left: 0.127%;
+  margin-top: 4px;
+  font-size: 20px;
+}
+
+.titleadd {
+  color: rgba(0, 0, 0, 0.45);
+  margin-left: 15px;
+  margin-top: 13px;
+  margin-bottom: -5px;
+  font-size: 48px;
+}
 .add-wrapper .add-form .wrapper-2 {
   padding: 14px 20px;
   margin: 30px 80px;
@@ -115,18 +140,6 @@
   max-width: 150px;
   line-height: 80px;
 }
-.add-wrapper .add-form .login2 {
-  color: #d60ca7;
-  background-color: #ffffff;
-  border: none;
-  text-decoration: none;
-  font-size: 1em;
-  font-weight: 600;
-  width: 150px;
-  max-height: 80px;
-  max-width: 150px;
-  line-height: 80px;
-}
 
 @media (min-width: 200px) {
   .add-wrapper .add-form .wrapper-2 {
@@ -151,7 +164,7 @@
     margin-top: 5%;
   }
   .add-wrapper .company-details .wrapper-1 {
-    padding-bottom: 150px;
+    /* padding-bottom: 150px; */
     padding-top: 160px;
   }
   .add-wrapper .company-details .slogan {
