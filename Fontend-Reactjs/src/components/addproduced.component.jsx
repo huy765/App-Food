@@ -5,7 +5,7 @@ import "../style/StyleAddproduced.css";
 import produceService from "../services/produce.service";
 import CheckButton from "react-validation/build/button";
 import { Card } from "antd";
-import { Button } from "antd";
+import { Button, Cascader } from "antd";
 
 const required = value => {
   if (!value) {
@@ -26,6 +26,30 @@ const vnamefood = value => {
   }
 };
 
+
+const options = [
+  {
+    value: 1,
+    label: 'Món chính',
+  },
+  {
+    value: 2,
+    label: 'Món phụ',
+  },
+  {
+    value: 3,
+    label: 'Món tráng miệng',
+  },
+  {
+    value: 4,
+    label: 'Nước giải khát',
+  },
+  {
+    value: 5,
+    label: 'Món ăn kiêng',
+  },
+];
+
 export default class Addproduced extends Component {
   constructor(props) {
     super(props);
@@ -44,7 +68,8 @@ export default class Addproduced extends Component {
       idCategory: "",
       linkimage: "",
       successful: false,
-      message: ""
+      message: "",
+      menu: [],
     };
   }
 
@@ -66,11 +91,11 @@ export default class Addproduced extends Component {
     });
   }
 
-  onChangeIdCategory(e) {
-    this.setState({
-      idCategory: e.target.value
-    });
+  onChangeIdCategory(value) {
+    console.log(value);
+    this.setState({idCategory:value.toString()})
   }
+
 
   onChangeLinkimage(e) {
     this.setState({
@@ -81,6 +106,10 @@ export default class Addproduced extends Component {
   onClickAdd = (namefood, price, detail, idCategory, linkimage) => {
     let food = { namefood, price, detail, idCategory, linkimage }
     this.setState({ produceds: food });
+  }
+
+  displayRender(label) {
+    return label[label.length - 1];
   }
 
   handleAddproduced(e) {
@@ -151,19 +180,18 @@ export default class Addproduced extends Component {
                         </div>
                         <h1 class="title">Thẻ demo</h1>
                         <div class="slogan">
-                      <Card 
-                      className="Card-add"
-                      hoverable
-                      cover={<img class="imgadd" alt="example" src={this.state.linkimage}/>}
-
-                    >
-                       <div class="titleadd">{this.state.namefood}</div> 
-                       <div class="descriptionadd">{this.state.price} </div>
-                      <Button type="primary" block>
-                        Đặt món
-                      </Button>
-                    </Card>
-                    </div>
+                          <Card
+                            className="Card-add"
+                            hoverable
+                            cover={<img class="imgadd" alt="example" src={this.state.linkimage} />}
+                          >
+                            <div class="titleadd_add">{this.state.namefood}</div>
+                            <div class="descriptionadd_add">{this.state.price} </div>
+                            <Button type="primary" block className="ant-btn-add-food">
+                              Đặt món
+                            </Button>
+                          </Card>
+                        </div>
                       </div>
 
                     </div>
@@ -188,7 +216,6 @@ export default class Addproduced extends Component {
                                     placeholder="Nhập tên món ăn"
                                     className="form-control"
                                     name="namefood"
-                                    // value={this.state.namefood}
                                     onChange={this.onChangeNamefood}
                                     validations={[required, vnamefood]}
                                   />
@@ -226,14 +253,12 @@ export default class Addproduced extends Component {
                                   <p className="form-label" htmlFor="idCategory">
                                     Danh mục:
                                   </p>
-                                  <Input
-                                    type="number"
-                                    placeholder="Danh mục món"
-                                    className="form-control"
-                                    name="idCategory"
+                                  <Cascader
+                                    options={options}
+                                    expandTrigger="hover"
+                                    displayRender={this.displayRender}
                                     onChange={this.onChangeIdCategory}
-                                    validations={[required, vnamefood]}
-                                  />
+                                  />,
                                 </div>
                                 <div className="form-group">
                                   <p className="form-label" htmlFor="linkimage">

@@ -136,7 +136,7 @@ export default class Home extends Component {
   }
 
   render() {
-    
+
     const { collapsed } = this.state;
     return (
 
@@ -177,17 +177,19 @@ export default class Home extends Component {
                       className="Card-item"
                       key={food.id}
                       hoverable
-                      cover={<img alt="example" src={food.linkimage}/>}
-
+                      cover={<img alt="example" src={food.linkimage} />}
                     >
                       <Link className="child-item-food"
                         onClick={() => this.onClickChiTiet(food.id, food.namefood, food.price, food.detail, food.linkimage)}
                         to={{ pathname: "/details", state: this.state.itemfood }}
                       ></Link>
                       <Meta title={food.namefood} description={food.price} />
-                      <Button type="primary" block>
-                        Đặt món
-                      </Button>
+
+                      <div >
+                        <Button className="btn-order" type="primary" block >
+                          Đặt món
+                        </Button>
+                      </div>
                     </Card>
                   </Col>
                 ))
@@ -196,7 +198,7 @@ export default class Home extends Component {
                     <Card
                       className="Card-item"
                       hoverable
-                      cover={<img alt="example" src={food.linkimage}/>}
+                      cover={<img alt="example" src={food.linkimage} />}
 
                     >
                       <Link className="child-item-food"
