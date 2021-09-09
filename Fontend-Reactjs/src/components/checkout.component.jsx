@@ -4,7 +4,7 @@ import "../style/checkout.css"
 import cartService from "../services/cart.server";
 import AuthService from "../services/auth.service";
 import checkoutServer from "../services/checkout.service";
-import { Button } from "antd";
+import { Button, Alert, Space } from "antd";
 
 class checkout extends Component {
 
@@ -15,7 +15,8 @@ class checkout extends Component {
             cart: this.props.location.state,
             currentUser: undefined,
             userReady: false,
-            totalPayment: 0
+            totalPayment: 0,
+            successful: false,
         }
     }
 
@@ -55,12 +56,16 @@ class checkout extends Component {
 
     orderFood = () => {
         var today = new Date();
-        var date = today.getDate() + '/' + (today.getMonth()+1) + '/' + today.getFullYear();
+        var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
         for (const food of this.state.cart) {
-            let item = {datecheckout: date,diachinhan: this.state.currentUser.address,sdtnhanhang:this.state.currentUser.phone,hotennguoihan:this.state.currentUser.namedisplay, idcart:food.id,foodid:food.foodid,foodname:food.foodname,linkimage:food.linkimage,qty:food.qty,price:food.price,userid:food.userid,tonggiatri:this.state.totalPayment}
+            let item = { datecheckout: date, diachinhan: this.state.currentUser.address, sdtnhanhang: this.state.currentUser.phone, hotennguoihan: this.state.currentUser.namedisplay, idcart: food.id, foodid: food.foodid, foodname: food.foodname, linkimage: food.linkimage, qty: food.qty, price: food.price, userid: food.userid, tonggiatri: this.state.totalPayment }
             checkoutServer.createOrder(item);
-            this.setState({cart:[]});
+            this.setState({ cart: [], totalPayment: 0, successful: true });
         }
+    }
+
+    backHome() {
+        this.props.history.push("/home");
     }
 
 
@@ -143,6 +148,29 @@ class checkout extends Component {
                     <Button className="btn-page-Checkout" type="primary" block onClick={() => this.orderFood()}>
                         Thanh toán
                     </Button>
+
+                    {this.state.successful === true ?
+                        <Alert className="alter-success"
+                            message="Đặt hàng thành công"
+                            description="Thức ăn sẽ được giao đến khách hàng trong ít phút nữa vui lòng chờ."
+                            type="success"
+                            showIcon
+                            closable
+                            action={
+                                <Space direction="vertical">
+                                    <Button size="small" type="primary" onClick={() => this.backHome()}>
+                                        Về trang chủ
+                                    </Button>
+                                </Space>
+
+                            }
+                        />
+
+                        :
+                        <div>
+                            Đang chờ thanh toán
+                        </div>
+                    }
                 </div>
             </div>
         );

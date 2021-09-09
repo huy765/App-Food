@@ -84,3 +84,10 @@
   top: 66px;
   right: 24px;
 }
+
+.alter-success {
+  position: absolute;
+  top: 0;
+  width: 540px;
+  right: 0;
+}

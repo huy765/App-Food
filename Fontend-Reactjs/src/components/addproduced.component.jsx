@@ -229,7 +229,6 @@ export default class Addproduced extends Component {
                                     className="form-control"
                                     name="linkimage"
                                     onChange={this.onChangeLinkimage}
-                                    validations={[required, vnamefood]}
                                   />
                                 </div>
                                 <button className="add" onClick={() => this.onClickAdd(this.state.namefood, this.state.price, this.state.detail, this.state.idCategory, this.state.linkimage)}>Thêm món ăn</button>
@@ -244,10 +243,8 @@ export default class Addproduced extends Component {
                               </div>
                             ) :
                               <div className="form-group">
-                                
                               </div>
                             }
-
                             <CheckButton
                               style={{ display: "none" }}
                               ref={c => {
