@@ -7,6 +7,8 @@ import "../style/details.css";
 
 import { } from "@ant-design/icons";
 
+import { Row, Col } from "antd";
+import { Card } from "antd";
 
 import { Button } from "antd";
 import { Image } from "antd";
@@ -15,13 +17,14 @@ import { Layout, Menu } from "antd";
 import { UserOutlined, TeamOutlined } from "@ant-design/icons";
 import authService from "../services/auth.service";
 import { Switch, Route, Link } from "react-router-dom";
+import cartService from "../services/cart.server";
 
 import Home from "../components/home.component";
 
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
 
-
+const { Meta } = Card;
 
 export default class Details extends Component {
   constructor(props) {
@@ -38,6 +41,8 @@ export default class Details extends Component {
       current: 1,
       value: 0,
       MonChon: this.props.location.state,
+      cart:[],
+      MonChonChiTiet:[],
     };
     this.getFoodByCategory = this.getFoodByCategory.bind(this);
   }
@@ -62,7 +67,19 @@ export default class Details extends Component {
       });
     }
 
+    ProducesService.getCurrentProduces().then((res) => {
+      const NgauNhien = Math.floor((Math.random() * 10));
+      this.setState({
+        produceds: res.data,
+        showProduceds: res.data.slice(NgauNhien - 1,NgauNhien + 4),
+        total: res.data.length,
+        current: 1,
+      })
+    });
+
   }
+
+  
 
   getFoodByCategory(id) {
     console.log(id);
@@ -86,6 +103,33 @@ export default class Details extends Component {
       })
     });
   }
+
+  onClickDatMon = (userid, foodid, foodname, price, qty, linkimage) => {
+    let itemCart = { userid: userid, foodid, foodname, price, qty, linkimage }
+    cartService.addFoodByCart(itemCart).then((res) => {
+      this.setState({ cart: res.data });
+    });
+  }
+
+  onClickChiTiet = (foodid, foodname, price, detail, linkimage) => {
+    let food = { foodid, foodname, price, detail, linkimage }
+    if(this.state.MonChonChiTiet.length > 0) {
+      this.state.MonChonChiTiet.pop()
+      this.state.MonChon.pop()
+    }  
+    this.state.MonChonChiTiet.push(food)
+    this.state.MonChon.push(food)
+    
+    const NgauNhien = Math.floor((Math.random() * 10));
+    this.setState({
+        produceds: this.state.produceds,
+        showProduceds: this.state.produceds.slice(NgauNhien - 1,NgauNhien + 4),
+        total: this.state.produceds.length,
+        current: 1,
+      })
+  }
+
+
 
 
   render() {
@@ -123,24 +167,70 @@ export default class Details extends Component {
             </Menu>
           </Sider>
           <Content>
+            <div>
             <div className="small-details-container single-details-product">  
-              {
-                this.state.MonChon.map((item) => (
-                  <div className="row-details">
-                    <div className="col-2-details">
-                      <Image src={item.linkimage} ></Image>
+              { this.state.MonChonChiTiet.length > 0
+                ? this.state.MonChonChiTiet.map((item) => (
+                    <div className="row-details">
+                      <div className="col-2-details">
+                        <Image src={item.linkimage} ></Image>
+                      </div>
+                      <div className="col-2-details KichCo">
+                        <h1>{item.foodname}</h1>
+                        <h5>Giá : {item.price} đ </h5>
+                        <h5>Địa Chỉ : {item.detail}</h5>
+                        <Button className="btnThemVaoGio" onClick={() => this.onClickDatMon(this.state.user.id, item.id, item.foodname, item.price, "1", item.linkimage)}>
+                          Thêm Vào Giỏ
+                        </Button>
+                        <h3>Mô tả :</h3>
+                      </div>
                     </div>
-                    <div className="col-2-details KichCo">
-                      <h1>{item.foodname}</h1>
-                      <h4>{item.price}</h4>
-                      <h4>{item.detail}</h4>
-                      <Button className="btnThemVaoGio">Thêm Vào Giỏ</Button>
-                      {/* <Button className="btnThemVaoGio">Yêu thích</Button> */}
-                      <h3>Mô tả :</h3>
+                  ))
+                   : this.state.MonChon.map((item) => (
+                    <div className="row-details">
+                      <div className="col-2-details">
+                        <Image src={item.linkimage} ></Image>
+                      </div>
+                      <div className="col-2-details KichCo">
+                        <h1>{item.foodname}</h1>
+                        <h5>Giá : {item.price} đ </h5>
+                        <h5>Địa Chỉ : {item.detail}</h5>
+                        <Button className="btnThemVaoGio" onClick={() => this.onClickDatMon(this.state.user.id, item.id, item.foodname, item.price, "1", item.linkimage)}>
+                          Thêm Vào Giỏ
+                        </Button>
+                        <h3>Mô tả :</h3>
+                      </div>
                     </div>
-                  </div>
-                ))
+                  ))
               }
+            </div>
+            <div></div>
+            <div className="small-details-container single-details-product">
+              <div className="row-details-1">
+                <div className="De-Xuat">
+                  <h4 className="Can-Trai">Có thể bạn thích</h4>
+                  <Link to={"/home"}>
+                    <h6 className="Can-Phai">Xem Tất Cả</h6>
+                  </Link>
+                </div>
+                <div className="NoiDung-DeXuat">
+                  <Row className="rowItem">
+                  { this.state.showProduceds.map((food) => (
+                      <Col className="colums" span={4}>
+                        <Card
+                          className="Card-item"
+                          hoverable
+                          cover={<img alt="example" src={food.linkimage} />}
+                          onClick={() => this.onClickChiTiet(food.id, food.namefood, food.price, food.detail, food.linkimage)}
+                          >
+                          <Meta title={food.namefood} description={food.price} />
+                        </Card>
+                      </Col>
+                    ))}
+                </Row>
+                </div>
+              </div>
+            </div>
             </div>
           </Content>
           <Switch>
