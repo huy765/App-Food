@@ -32,10 +32,10 @@ public class CheckOutController {
 
     @PostMapping(value="/order")
     public ResponseEntity<String> postMethodName(@RequestBody CheckOut entity) {
-        
+        System.out.println(entity.getNgaytao());
         Optional<User> us = userRepository.findById(entity.getUserid());
         if(us.isEmpty() == false){
-            CheckOut order = new CheckOut(entity.getDateCheckout(),entity.getDiachinhan(),entity.getSdtnhanhang(),entity.getHotennguoihan(),entity.getIdcart(),entity.getFoodid(),entity.getFoodname(),entity.getLinkimage(),entity.getQty(),entity.getPrice(),entity.getUserid(),entity.getTonggiatri());
+            CheckOut order = new CheckOut(entity.getNgaytao(),entity.getDiachinhan(),entity.getSdtnhanhang(),entity.getHotennguoihan(),entity.getIdcart(),entity.getFoodid(),entity.getFoodname(),entity.getLinkimage(),entity.getQty(),entity.getPrice(),entity.getUserid(),entity.getTonggiatri());
             checkoutReponsitory.save(order);
             cartReponsitory.deleteById(entity.getIdcart());
             return ResponseEntity.ok("Đặt hàng thành công");
@@ -43,6 +43,5 @@ public class CheckOutController {
 
         return ResponseEntity.ok("Xảy ra lỗi");
         
-    }
-    
+    } 
 }

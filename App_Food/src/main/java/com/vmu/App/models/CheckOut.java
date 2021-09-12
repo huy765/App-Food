@@ -15,8 +15,8 @@ public class CheckOut {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "datecheckout")
-    private String datecheckout;
+    @Column(name = "ngaytao")
+    private String ngaytao;
 
     @Column(name = "diachinhan")
     private String diachinhan;
@@ -55,8 +55,8 @@ public class CheckOut {
         super();
     }
 
-    public CheckOut(String datecheckout,String diachinhan,String sdtnhanhang,String hotennguoihan,Long idcart,Long foodid,String foodname,String linkimage,int qty,Double price,Long userid,Double tonggiatri){
-        this.datecheckout = datecheckout;
+    public CheckOut(String ngaytao,String diachinhan,String sdtnhanhang,String hotennguoihan,Long idcart,Long foodid,String foodname,String linkimage,int qty,Double price,Long userid,Double tonggiatri){
+        this.ngaytao = ngaytao;
         this.diachinhan = diachinhan;
         this.sdtnhanhang = sdtnhanhang;
         this.hotennguoihan = hotennguoihan;
@@ -78,12 +78,12 @@ public class CheckOut {
         this.id = id;
     }
 
-    public String getDateCheckout() {
-        return datecheckout;
+    public String getNgaytao() {
+        return ngaytao;
     }
 
-    public void setDateCheckout(String dateCheckout) {
-        this.datecheckout = dateCheckout;
+    public void setNgaytao(String ngaytao) {
+        this.ngaytao = ngaytao;
     }
 
     public String getDiachinhan() {

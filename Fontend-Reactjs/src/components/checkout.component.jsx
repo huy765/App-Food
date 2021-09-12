@@ -56,12 +56,14 @@ class checkout extends Component {
 
     orderFood = () => {
         var today = new Date();
-        var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+        var ngaytao = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+        
         for (const food of this.state.cart) {
-            let item = { datecheckout: date, diachinhan: this.state.currentUser.address, sdtnhanhang: this.state.currentUser.phone, hotennguoihan: this.state.currentUser.namedisplay, idcart: food.id, foodid: food.foodid, foodname: food.foodname, linkimage: food.linkimage, qty: food.qty, price: food.price, userid: food.userid, tonggiatri: this.state.totalPayment }
+            let item = { ngaytao: ngaytao, diachinhan: this.state.currentUser.address, sdtnhanhang: this.state.currentUser.phone, hotennguoihan: this.state.currentUser.namedisplay, idcart: food.id, foodid: food.foodid, foodname: food.foodname, linkimage: food.linkimage, qty: food.qty, price: food.price, userid: food.userid, tonggiatri: this.state.totalPayment }
             checkoutServer.createOrder(item);
             this.setState({ cart: [], totalPayment: 0, successful: true });
         }
+        
     }
 
     backHome() {
