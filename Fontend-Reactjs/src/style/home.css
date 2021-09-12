@@ -43,6 +43,11 @@
   font-size: 24px;
 }
 
+.ant-card-meta{
+  max-width: 200px;
+  min-width: 200px;
+}
+
 .ant-card-cover img {
   border-radius: 9px 9px 9px 9px;
   height: 188px;
