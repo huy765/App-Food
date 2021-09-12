@@ -210,9 +210,6 @@ export default class Details extends Component {
               <div className="row-details-1">
                 <div className="De-Xuat">
                   <h4 className="Can-Trai">Có thể bạn thích</h4>
-                  <Link to={"/home"}>
-                    <h6 className="Can-Phai">Xem Tất Cả</h6>
-                  </Link>
                 </div>
                 <div className="NoiDung-DeXuat">
                   <Row className="rowItem">
@@ -228,6 +225,9 @@ export default class Details extends Component {
                         </Card>
                       </Col>
                     ))}
+                    <Link className="Can-Giua" to={"/home"}>
+                    <h6 >Xem Tất Cả</h6>
+                    </Link>
                 </Row>
                 </div>
               </div>

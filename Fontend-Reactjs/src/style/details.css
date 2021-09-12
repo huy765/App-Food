@@ -106,11 +106,11 @@ input:focus {
     font-weight: 500;
 }
 
-.small-details-container .row-details .De-Xuat .Can-Phai    {
+/* .small-details-container .row-details .De-Xuat .Can-Phai    {
     flex-basis: 50%;
     display: inline-block;
     text-align: right;
-}
+} */
 
 .small-details-container .NoiDung-DeXuat    {
     display: flex;
@@ -118,8 +118,12 @@ input:focus {
     justify-content: space-around;
 }
 
-.row-details-1  {
-    
+.Can-Giua   {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    /* text-align: center; */
 }
 
 /* .SP-Tuong-Tu-form   {
