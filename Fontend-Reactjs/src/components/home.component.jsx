@@ -138,6 +138,7 @@ export default class Home extends Component {
   render() {
 
     const { collapsed } = this.state;
+    const { showAdminBoard } = this.state;
     return (
 
       <div className="site-layout-background">
@@ -160,12 +161,19 @@ export default class Home extends Component {
                 ))}
               </SubMenu>
 
-              <SubMenu key="sub3" icon={<TeamOutlined />} title="Admin">
-                <Menu.Item key="9"><Link to={"/addproduced"}>Thêm món ăn</Link></Menu.Item>
-                <Menu.Item key="10">Thống kê đơn hàng</Menu.Item>
-                <Menu.Item key="11">Thống kê doanh thu</Menu.Item>
-                <Menu.Item key="12">Đăng xuất</Menu.Item>
-              </SubMenu>
+              {showAdminBoard ?
+                <SubMenu key="sub3" icon={<TeamOutlined />} title="Admin">
+                  <Menu.Item key="9"><Link to={"/addproduced"}>Thêm món ăn</Link></Menu.Item>
+                  <Menu.Item key="10">Thống kê đơn hàng</Menu.Item>
+                  <Menu.Item key="11">Thống kê doanh thu</Menu.Item>
+                  <Menu.Item key="12">Đăng xuất</Menu.Item>
+                </SubMenu>
+              : 
+                <div>
+
+                </div>
+              }
+
             </Menu>
           </Sider>
           <Content style={{ padding: "0 24px", minHeight: 280 }}>
