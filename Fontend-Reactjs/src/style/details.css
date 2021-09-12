@@ -160,6 +160,11 @@ input:focus {
   height: auto;
 }
 
+.ant-image-preview-img   {
+    min-width: auto;
+    min-height: 567px;
+}
+
 /* .SP-Tuong-Tu-form   {
     margin-top: 20px;
     background : url(https://i0.wp.com/images7.alphacoders.com/977/thumb-1920-977986.jpg);
