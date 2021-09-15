@@ -4,17 +4,13 @@ import CategoryService from "../services/Category.service";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "antd/dist/antd.css";
-import "../style/home.css";
+import "../style/revenueStatistics.css";
 
 import { } from "@ant-design/icons";
 
-import { Row, Col } from "antd";
-
-import { Card } from "antd";
-import { Button } from "antd";
-import { Pagination } from 'antd';
-
 import { Layout, Menu } from "antd";
+import { DatePicker } from "antd";
+import { Button } from "antd";
 import { UserOutlined, TeamOutlined } from "@ant-design/icons";
 import authService from "../services/auth.service";
 import cartService from "../services/cart.server";
@@ -22,15 +18,15 @@ import Profile from "./profile.component";
 import { Switch, Route, Link } from "react-router-dom";
 import Addproduced from "./addproduced.component";
 import Details from "./details.component";
+import Home from "../components/home.component";
+// import { Area } from '@antv/g2plot';
 
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
 
-const { Meta } = Card;
 
 
-
-export default class Home extends Component {
+export default class Revenue extends Component {
   constructor(props) {
     super(props);
 
@@ -154,12 +150,10 @@ export default class Home extends Component {
                 <Menu.Item key="8">Đăng xuất</Menu.Item>
               </SubMenu>
 
-              <SubMenu key="sub2" icon={<TeamOutlined />} title="Menu">
-                <Menu.Item onClick={() => this.getAllProduced()}>Hiển thị toàn bộ món ăn</Menu.Item>
-                {this.state.category.map((cate) => (
-                  <Menu.Item key={cate.id} onClick={() => this.getFoodByCategory(cate.id)}>{cate.namecategory}</Menu.Item>
-                ))}
-              </SubMenu>
+              <Link to="/home">
+                <SubMenu key="sub2" icon={<TeamOutlined />} title="Menu">
+                </SubMenu>
+              </Link>
 
               {showAdminBoard ?
                 <SubMenu key="sub3" icon={<TeamOutlined />} title="Admin">
@@ -177,67 +171,105 @@ export default class Home extends Component {
             </Menu>
           </Sider>
           <Content style={{ padding: "0 24px", minHeight: 280 }}>
-            <Row className="rowItem">
-              {this.state.ChildCategoryFood.length > 0
-                ? this.state.ChildCategoryFood.map((food) => (
-                  <Col className="colums" span={4}>
-                    <Card
-                      className="Card-item"
-                      key={food.id}
-                      hoverable
-                      cover={<img alt="example" src={food.linkimage} />}
-                    >
-                      <Link className="child-item-food"
-                        onClick={() => this.onClickChiTiet(food.id, food.namefood, food.price, food.detail, food.linkimage)}
-                        to={{ pathname: "/details", state: this.state.itemfood }}
-                      ></Link>
-                      <Meta title={food.namefood} description={food.price} />
+           <div className="page-content-wrapper">
+            <div className="grid container">
+              <div className="main-DT">
+                <div className="seller-meta">
+                  <div className="section-title">
+                    Tổng Quan
+                    </div>
+                    <div className="meta-section">
+                      <div className="meta-overview">
+                        <div className="meta-released">
+                          <div className="meta-item-title">
+                            Doanh Thu
+                          </div>
+                          <div className="meta-time-box">
+                            <div className="meta-time-item mr16">
+                              <div className="label">
+                                Tuần Này
+                              </div>
+                              <div className="meta-numeric-content" >
+                                <span className="currency-symbol">đ</span>
+                                 1000000000
+                              </div>
+                            </div>
+                            
+                            <div className="meta-time-item mr16">
+                              <div className="label">
+                                Tháng Này
+                              </div>
+                              <div className="meta-numeric-content" >
+                                <span className="currency-symbol">đ</span>
+                                1000000000
+                              </div>
+                            </div>
 
-                      <div >
-                        <Button className="btn-order" type="primary" block >
-                          Đặt món
-                        </Button>
+                            <div className="meta-time-item mr16">
+                              <div className="label">
+                                Năm Này
+                              </div>
+                              <div className="meta-numeric-content" style={{width: "123"}}>
+                                <span className="currency-symbol">đ</span>
+                                1000000000
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
                       </div>
-                    </Card>
-                  </Col>
-                ))
-                : this.state.showProduceds.map((food) => (
-                  <Col className="colums" span={4}>
-                    <Card
-                      className="Card-item"
-                      hoverable
-                      cover={<img alt="example" src={food.linkimage} />}
+                    </div>
+                </div>
+                <div className="right-main-table">
+                  <div className="main-content">
+                    <div className="section-title section-title-CT">
+                      <span>Chi Tiết</span>
+                    </div>
 
-                    >
-                      <Link className="child-item-food"
-                        onClick={() => this.onClickChiTiet(food.id, food.namefood, food.price, food.detail, food.linkimage)}
-                        to={{ pathname: "/details", state: this.state.itemfood }}
-                      ></Link>
-                      <Meta title={food.namefood} description={food.price} />
+                    <div className="transactions-table-wrap">
+                      {
+                        
+                      }
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-                      <Button type="primary" block onClick={() => this.onClickDatMon(this.state.user.id, food.id, food.namefood, food.price, "1", food.linkimage)}>
-                        Đặt món
-                      </Button>
-                    </Card>
-                  </Col>
-                ))}
-            </Row>
-            <div>
-              <Pagination padding="24px"
-                defaultPageSize={10}
-                total={this.state.total}
-                defaultCurrent={1}
-                current={this.state.current}
-                showSizeChanger={false}
-                onChange={this.changePage}
-              />
+              <div className="right-DT">
+                <div className="income-statements">
+                  <div className="meta-section sidebar-section-header">
+                    <div className="statement-title max-height-ND">Báo Cáo Thu Nhập</div>
+                    <div className="Tu-Ngay max-height-ND">
+                      Từ Ngày
+                    </div>
+                    <DatePicker className="dtp-Tu-Ngay max-height-ND"/>
+
+                    <div className="Den-Ngay max-height-ND">
+                      Đến Ngày
+                    </div>
+                    <DatePicker className="dtp-Tu-Ngay max-height-ND"/>
+                  </div>
+                  <Button className="can-giua">Truy Xuất</Button>
+                  <div className="meta-section-content">
+                    {/* <ul className="list">
+                      <li className="date">27</li>
+                      <li className="date">28</li>
+                      <li className="date">29</li>
+                      <li className="date">30</li>
+                      <li className="date">31</li>
+                    </ul> */}
+                  </div>
+
+                </div>
+              </div>
             </div>
-
+           </div>
           </Content>
           <Switch>
             <Route exact path={"/profile"} component={Profile} />
             <Route exact path={"/addproduced"} component={Addproduced} />
             <Route exact path={"/details"} component={Details} />
+            <Route exact path={"/home"} component={Home} />
           </Switch>
         </Layout>
       </div>

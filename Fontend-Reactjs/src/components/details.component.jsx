@@ -45,7 +45,6 @@ export default class Details extends Component {
       cart:[],
       MonChonChiTiet:[],
     };
-    this.getFoodByCategory = this.getFoodByCategory.bind(this);
   }
 
   onCollapse = (collapsed) => {
@@ -80,31 +79,6 @@ export default class Details extends Component {
 
   }
 
-  
-
-  getFoodByCategory(id) {
-    console.log(id);
-    ProducesService.getFoodByCategoryServer(id).then((res) => {
-      this.setState({
-        produceds: res.data,
-        showProduceds: res.data.slice(0, 10),
-        total: res.data.length,
-        current: 1,
-      });
-    });
-  }
-
-  getAllProduced() {
-    ProducesService.getCurrentProduces().then((res) => {
-      this.setState({
-        produceds: res.data,
-        showProduceds: res.data.slice(0, 10),
-        total: res.data.length,
-        current: 1,
-      })
-    });
-  }
-
   onClickDatMon = (userid, foodid, foodname, price, qty, linkimage) => {
     let itemCart = { userid: userid, foodid, foodname, price, qty, linkimage }
     cartService.addFoodByCart(itemCart).then((res) => {
@@ -130,9 +104,6 @@ export default class Details extends Component {
       })
   }
 
-
-
-
   render() {
     const { collapsed } = this.state;
 
@@ -152,10 +123,6 @@ export default class Details extends Component {
 
               <Link to="/home">
                 <SubMenu key="sub2" icon={<TeamOutlined />} title="Menu">
-                  <Menu.Item onClick={() => this.getAllProduced()}>Hiển thị toàn bộ món ăn</Menu.Item>
-                  {this.state.category.map((cate) => (
-                    <Menu.Item key={cate.id} onClick={() => this.getFoodByCategory(cate.id)}>{cate.namecategory}</Menu.Item>
-                  ))}
                 </SubMenu>
               </Link>
 
