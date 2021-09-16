@@ -13,7 +13,6 @@ import { DatePicker } from "antd";
 import { Button } from "antd";
 import { UserOutlined, TeamOutlined } from "@ant-design/icons";
 import authService from "../services/auth.service";
-import cartService from "../services/cart.server";
 import Profile from "./profile.component";
 import { Switch, Route, Link } from "react-router-dom";
 import Addproduced from "./addproduced.component";
@@ -159,30 +158,10 @@ export default class Revenue extends Component {
     super(props);
 
     this.state = {
-      produceds: [],
-      showProduceds: [],
-      category: [],
-      ChildCategoryFood: [],
-      showChildCategoryFoodProduceds: [],
       user: [],
       currentUser: undefined,
-      Message: "",
-      total: 0,
-      current: 1,
-      value: 0,
-      cart: [],
-      itemfood: [],
     };
-    this.getFoodByCategory = this.getFoodByCategory.bind(this);
   }
-
-  onCollapse = (collapsed) => {
-    this.setState({ collapsed });
-  };
-
-  handleChange = value => {
-    this.setState({ value });
-  };
 
   componentDidMount() {
     const user = authService.getCurrentUser();
@@ -195,68 +174,6 @@ export default class Revenue extends Component {
         showAdminBoard: user.roles.includes("ROLE_ADMIN"),
       });
     }
-
-    ProducesService.getCurrentProduces().then((res) => {
-      this.setState({
-        produceds: res.data,
-        showProduceds: res.data.slice(0, 10),
-        total: res.data.length,
-        current: 1,
-      })
-    });
-
-    CategoryService.getCurrentProduces().then((res) => {
-      this.setState({ category: res.data });
-    });
-
-
-  }
-
-  getFoodByCategory(id) {
-    console.log(id);
-    ProducesService.getFoodByCategoryServer(id).then((res) => {
-      this.setState({
-        produceds: res.data,
-        showProduceds: res.data.slice(0, 10),
-        total: res.data.length,
-        current: 1,
-      });
-    });
-  }
-
-  onClickDatMon = (userid, foodid, foodname, price, qty, linkimage) => {
-    let itemCart = { userid: userid, foodid, foodname, price, qty, linkimage }
-    cartService.addFoodByCart(itemCart).then((res) => {
-      this.setState({ cart: res.data });
-    });
-  }
-
-  onClickChiTiet = (foodid, foodname, price, detail, linkimage) => {
-    let food = { foodid, foodname, price, detail, linkimage }
-    this.state.itemfood.push(food);
-    console.log(this.state.itemfood);
-  }
-
-  getAllProduced() {
-    ProducesService.getCurrentProduces().then((res) => {
-      this.setState({
-        produceds: res.data,
-        showProduceds: res.data.slice(0, 10),
-        total: res.data.length,
-        current: 1,
-      })
-    });
-  }
-
-  changePage = (page, pageSize) => {
-    var start = (page - 1) * pageSize;
-    var end = (page) * pageSize;
-    this.setState({ showProduceds: this.state.produceds.slice(start, end) })
-    this.setState({ current: page })
-  }
-
-  onChange(value) {
-    console.log('changed', value);
   }
 
   render() {
