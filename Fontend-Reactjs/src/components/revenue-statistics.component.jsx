@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import ProducesService from "../services/produce.service";
-import CategoryService from "../services/Category.service";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "antd/dist/antd.css";
