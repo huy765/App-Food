@@ -22,6 +22,7 @@ import Profile from "./profile.component";
 import { Switch, Route, Link } from "react-router-dom";
 import Addproduced from "./addproduced.component";
 import Details from "./details.component";
+// import MyOrder from "./MyOrder.component";
 
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
@@ -150,7 +151,7 @@ export default class Home extends Component {
             <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
               <SubMenu key="sub1" icon={<UserOutlined />} title="Người dùng">
                 <Menu.Item key="6"><Link to={"/profile"}>Thông tin tài khoản</Link></Menu.Item>
-                <Menu.Item key="7">Tình trạng đơn hàng</Menu.Item>
+                <Menu.Item key="7"><Link to={"/myorder"}>Tình trạng đơn hàng</Link></Menu.Item>
                 <Menu.Item key="8">Đăng xuất</Menu.Item>
               </SubMenu>
 

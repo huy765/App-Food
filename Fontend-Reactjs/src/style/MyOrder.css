@@ -1,0 +1,160 @@
+.ant-steps {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  -webkit-font-feature-settings: "tnum";
+  font-feature-settings: "tnum";
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  font-size: 0;
+  text-align: initial;
+  margin-top: 142px;
+}
+
+.app-MyOrder {
+  position: relative;
+  top: 150px;
+  bottom: 20px;
+}
+
+.block-image-Order {
+  line-height: 0;
+  position: initial !important;
+  top: 108px;
+  border-color: transparent;
+  margin-left: 20px;
+  margin-right: 20px;
+  -webkit-box-shadow: 0 1px 2px -2px rgb(0 0 0 / 16%),
+    0 3px 6px 0 rgb(0 0 0 / 12%), 0 5px 12px 4px rgb(0 0 0 / 9%);
+  box-shadow: 0 1px 2px -2px rgb(0 0 0 / 16%), 0 3px 6px 0 rgb(0 0 0 / 12%),
+    0 5px 12px 4px rgb(0 0 0 / 9%);
+}
+
+.ant-steps {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  -webkit-font-feature-settings: "tnum";
+  font-feature-settings: "tnum";
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  font-size: 0;
+  text-align: initial;
+}
+
+.ant-image-mask {
+  position: absolute;
+  top: -1px;
+  right: -35px;
+  bottom: 0;
+  left: 25px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  height: 77px;
+}
+
+.ant-steps-item {
+  position: relative;
+  display: inline-block;
+  -ms-flex: 1 1;
+  flex: 1 1;
+  overflow: hidden;
+  vertical-align: top;
+  margin: 10px 0px;
+}
+
+.ant-steps-item-process {
+  margin-left: 60px;
+}
+
+.ant-steps-item-wait {
+  margin-right: 60px;
+}
+
+.steps-action {
+  margin: 15px 21px;
+}
+
+.info-MyOrder {
+  display: flex;
+}
+
+.image-show {
+  margin-left: 30px;
+}
+
+.item-info-food {
+  font-size: 18px;
+  line-height: 1;
+  margin-top: 6px;
+  margin-left: 60px;
+  border: 2.5px dotted rgb(102, 102, 102);
+}
+
+.bold-html {
+  display: inline-block;
+  min-width: 158px;
+}
+
+.bold-html-namefood {
+  min-width: 130px;
+}
+
+.bold-html-price {
+  min-width: 130px;
+}
+
+.bold-html-sty {
+  min-width: 130px;
+}
+
+.bold-html-address {
+  min-width: 130px;
+}
+
+.steps-action {
+  margin: 18px 21px;
+  position: relative;
+  bottom: 9px;
+}
+
+.ant-steps-item-finish {
+  margin-left: 60px;
+}
+
+.ant-steps-item-active {
+  margin-right: 60px;
+}
+
+.Title-name {
+  font-size: 60px;
+  position: absolute;
+  top: -104px;
+  left: 350px;
+  color: aqua;
+}

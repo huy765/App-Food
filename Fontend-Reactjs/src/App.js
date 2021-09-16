@@ -26,6 +26,7 @@ import checkout from "./components/checkout.component";
 import Addproduced from "./components/addproduced.component";
 import Details from "./components/details.component";
 import Revenue from "./components/revenue-statistics.component";
+import MyOrder from "./components/MyOrder.component";
 
 class App extends Component {
   constructor(props) {
@@ -205,6 +206,7 @@ class App extends Component {
             <Route exact path={[["/home", "/"]]} component={Home} />
             <Route exact path={"/profile"} component={Profile} />
             <Route exact path={"/checkout"} component={checkout} />
+            <Route exact path={"/myorder"} component={MyOrder} />
             <Route exact path={"/profile"} component={Profile} /> 
             <Route exact path={"/addproduced"} component={Addproduced}/> 
             <Route exact path={"/details"} component={Details} />
