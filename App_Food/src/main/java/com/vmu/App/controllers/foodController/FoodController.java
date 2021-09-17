@@ -22,15 +22,13 @@ public class FoodController {
     @Autowired
     public FoodReponsitory foodReponsitory;
 
-    
-    
     @GetMapping("/produced")
     public List<Food> getListFood(){
         return foodReponsitory.findAll();
     }
 
     @GetMapping("/producedById")
-    public List<Food> getListFoodByCategory(@RequestParam(value = "id" ,defaultValue = "2") String id){
+    public List<Food> getListFoodByCategory(@RequestParam(value = "id" ,defaultValue = "0") String id){
         Long idCategory = Long.parseLong(id);
         return foodReponsitory.findByIdCategory(idCategory);
     }

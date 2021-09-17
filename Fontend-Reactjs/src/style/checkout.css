@@ -12,6 +12,8 @@
 .info-user {
   width: 629px;
   height: 500px;
+  margin-top: -62px;
+  margin-left: 12px;
 }
 
 .info-cart {

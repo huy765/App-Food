@@ -25,8 +25,6 @@ const { Content, Sider } = Layout;
 
 const { Meta } = Card;
 
-
-
 export default class Home extends Component {
     constructor(props) {
         super(props);

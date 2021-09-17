@@ -122,6 +122,7 @@ class App extends Component {
   ) => {
     console.log(stateMsg);
     let itemCart = { id, foodid, foodname, linkimage, price, qty, userid };
+    console.log(itemCart)
     if (qty > 0) {
       this.setState({ qty: qty });
       cartService.updateQtyItemCart(itemCart).then((res) => {
