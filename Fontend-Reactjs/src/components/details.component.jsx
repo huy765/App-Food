@@ -117,7 +117,7 @@ export default class Details extends Component {
             <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
               <SubMenu key="sub1" icon={<UserOutlined />} title="Người dùng">
                 <Menu.Item key="6"><Link to={"/profile"}>Thông tin tài khoản</Link></Menu.Item>
-                <Menu.Item key="7">Tình trạng đơn hàng</Menu.Item>
+                <Menu.Item key="7"><Link to={"/myorder"}>Tình trạng đơn hàng</Link></Menu.Item>
                 <Menu.Item key="8">Đăng xuất</Menu.Item>
               </SubMenu>
 
@@ -127,9 +127,9 @@ export default class Details extends Component {
               </Link>
 
               <SubMenu key="sub3" icon={<TeamOutlined />} title="Admin">
-                <Menu.Item key="9">Thêm món ăn</Menu.Item>
-                <Menu.Item key="10">Thống kê đơn hàng</Menu.Item>
-                <Menu.Item key="11">Thống kê doanh thu</Menu.Item>
+                <Menu.Item key="9"><Link to={"/addproduced"}>Thêm món ăn</Link></Menu.Item>
+                <Menu.Item key="10"><Link to={"/quanlydonhang"}>Thống kê dơn hàng</Link></Menu.Item>
+                <Menu.Item key="11"><Link to={"/revenue"}>Thống kê doanh thu</Link></Menu.Item>
                 <Menu.Item key="12">Đăng xuất</Menu.Item>
               </SubMenu>
             </Menu>
