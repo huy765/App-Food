@@ -13,6 +13,9 @@ class checkout {
   getOrderByMonth(month){
     return axios.get(`${API_URL}orderByMonth?month=${month}`);
   }
+  getOrderByYear(year){
+    return axios.get(`${API_URL}orderByYear?year=${year}`);
+  }
 }
 
 export default new checkout();

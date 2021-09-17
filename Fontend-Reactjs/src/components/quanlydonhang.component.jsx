@@ -53,13 +53,38 @@ const options = [
     label: 'Tháng 12',
   },
 ];
+
+const options2 = [
+  {
+    value: 2021,
+    label: 'Năm 2021',
+  },
+  {
+    value: 2020,
+    label: 'Năm 2020',
+  },
+  {
+    value: 2019,
+    label: 'Năm 2019',
+  },
+  {
+    value: 2018,
+    label: 'Năm 2018',
+  },
+  {
+    value: 2017,
+    label: 'Năm 2017',
+  },
+];
 export default class Quanlydonhang extends Component {
     constructor(props) {
         super(props);
         this.onChangeMonth = this.onChangeMonth.bind(this);
+        this.onChangeYear = this.onChangeYear.bind(this);
         this.state = {
           orders: [],
           month: "",
+          year: "",
         };
       }
     
@@ -81,6 +106,17 @@ export default class Quanlydonhang extends Component {
 
         });
       }
+
+      onChangeYear(value) {
+        console.log(value);
+        this.setState({year:value.toString()})
+        checkoutService.getOrderByYear(this.state.year).then((res) => {
+          console.log(res.data);
+          this.setState({orders: res.data});
+
+        });
+      }
+
     render() {
         return (
               <div>
@@ -92,14 +128,26 @@ export default class Quanlydonhang extends Component {
                     <p>.</p> 
                     <Cascader
                     options={options}
-                    expandTrigger="hover"
+
                     displayRender={this.displayRender}
                     onChange={this.onChangeMonth}
                     />
-                
+                    
+   
+                    <Cascader
+                    options={options2}
+
+                    displayRender={this.displayRender}
+                    onChange={this.onChangeYear}
+                    />
                   </div>
                 </div>
+                <div className="Select_thoi-Gian">
+                  <div className="income-statements">
 
+                  </div>
+                </div>
+    
                <table class="layout display responsive-table">
                    <thead>
                        <tr>

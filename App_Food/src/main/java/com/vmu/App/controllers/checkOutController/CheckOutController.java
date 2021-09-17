@@ -52,14 +52,13 @@ public class CheckOutController {
         return checkoutReponsitory.findAll();
     }
     
-    // @GetMapping("/orderByMonth")
-    // public List<CheckOut> getListOrderByNgaytao(@RequestParam(value = "month" ,defaultValue = "15/9/2021") String month){
-    //     return checkoutReponsitory.findByNgaytao(month);
-    // }
-
     @GetMapping("/orderByMonth")
-    public List<CheckOut> getListOrderByNgaytao(@RequestParam(value = "month" ,defaultValue = "15/9/2021") String month){
+    public List<CheckOut> getListOrderByNgaytao(@RequestParam(value = "month" ,defaultValue = "1") String month){
         return checkoutReponsitory.findByThang(month);
+    }
+    @GetMapping("/orderByYear")
+    public List<CheckOut> getListOrderByNam(@RequestParam(value = "year" ,defaultValue = "2020") String year){
+        return checkoutReponsitory.findByNam(year);
     }
 
     @PostMapping(value="/order")
