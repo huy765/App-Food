@@ -60,7 +60,7 @@ public class CheckOut {
 
     public CheckOut(String ngaytao,String stateorder,String diachinhan,String sdtnhanhang,String hotennguoihan,Long idcart,Long foodid,String foodname,String linkimage,int qty,Double price,Long userid,Double tonggiatri){
         this.ngaytao = ngaytao;
-
+        this.stateorder = stateorder;
         this.diachinhan = diachinhan;
         this.sdtnhanhang = sdtnhanhang;
         this.hotennguoihan = hotennguoihan;
