@@ -215,7 +215,7 @@ export default class Revenue extends Component {
           </Sider>
           <Content style={{ padding: "0 24px", minHeight: 280 }}>
            <div className="page-content-wrapper">
-            <div className="grid container">
+            <div className="grid containerbd">
               <div className="main-DT">
                 <div className="seller-meta">
                   <div className="section-title">

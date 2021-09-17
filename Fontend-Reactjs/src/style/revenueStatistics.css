@@ -18,7 +18,7 @@
     width: 1140px;
     margin: 40px -67px;
 }
-.container  {
+.containerbd  {
     width: 1104px;
     display: flex;
     margin: 45px;
@@ -31,7 +31,7 @@
     -webkit-box-pack: start;
     justify-content: flex-start;
 }
-.container .main    {
+.containerbd .main    {
     width: 784px;
 }
 .seller-meta {
@@ -109,7 +109,7 @@
     font-size: 20px;
 }
 
-.container .right[data-v-978595a8] {
+.containerbd .right[data-v-978595a8] {
     margin-left: 16px;
     width: 304px;
 }

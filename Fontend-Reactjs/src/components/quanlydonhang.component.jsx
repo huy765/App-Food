@@ -53,7 +53,6 @@ const options = [
     label: 'Tháng 12',
   },
 ];
-
 export default class Quanlydonhang extends Component {
     constructor(props) {
         super(props);
@@ -76,7 +75,7 @@ export default class Quanlydonhang extends Component {
       onChangeMonth(value) {
         console.log(value);
         this.setState({month:value.toString()})
-        checkoutService.getOrderByNgaytao(this.state.month).then((res) => {
+        checkoutService.getOrderByMonth(this.state.month).then((res) => {
           console.log(res.data);
           this.setState({orders: res.data});
 
@@ -88,16 +87,17 @@ export default class Quanlydonhang extends Component {
            
                 <div class="pageql">
                 <h1>Bảng thống kê đơn hàng</h1>
-                <div className="Month">
-                <p>
-                    Tháng:
-                </p>
+                <div className="Select_thoi-Gian">
+                  <div className="income-statements">
+                    <p>.</p> 
                     <Cascader
                     options={options}
                     expandTrigger="hover"
                     displayRender={this.displayRender}
                     onChange={this.onChangeMonth}
                     />
+                
+                  </div>
                 </div>
 
                <table class="layout display responsive-table">

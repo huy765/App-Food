@@ -10,8 +10,8 @@ class checkout {
   getOrder() {
     return axios.get(API_URL + "orders");
   }
-  getOrderByNgaytao(ngaytao){
-    return axios.get(`${API_URL}orderByNgaytao?ngaytao=${ngaytao}`);
+  getOrderByMonth(month){
+    return axios.get(`${API_URL}orderByMonth?month=${month}`);
   }
 }
 
