@@ -1,8 +1,10 @@
 package com.vmu.App.controllers.checkOutController;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.vmu.App.models.CheckOut;
@@ -13,6 +15,7 @@ import com.vmu.App.repository.RepoCheckOut.CheckoutReponsitory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -29,7 +32,15 @@ public class CheckOutController {
 
     @Autowired
     public CartReponsitory cartReponsitory;
-
+    
+    @GetMapping("/orders")
+    public List<CheckOut> getListcOrder(){
+        return checkoutReponsitory.findAll();
+    }
+    @GetMapping("/orderByNgaytao")
+    public List<CheckOut> getListOrderByNgaytao(@RequestParam(value = "ngaytao" ,defaultValue = "15/9/2021") String ngaytao){
+        return checkoutReponsitory.findByNgaytao(ngaytao);
+    }
     @PostMapping(value="/order")
     public ResponseEntity<String> postMethodName(@RequestBody CheckOut entity) {
         System.out.println(entity.getNgaytao());

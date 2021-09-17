@@ -22,6 +22,7 @@ import Profile from "./profile.component";
 import { Switch, Route, Link } from "react-router-dom";
 import Addproduced from "./addproduced.component";
 import Details from "./details.component";
+import Quanlydonhang from "./quanlydonhang.component";
 // import MyOrder from "./MyOrder.component";
 
 const { SubMenu } = Menu;
@@ -165,7 +166,7 @@ export default class Home extends Component {
               {showAdminBoard ?
                 <SubMenu key="sub3" icon={<TeamOutlined />} title="Admin">
                   <Menu.Item key="9"><Link to={"/addproduced"}>Thêm món ăn</Link></Menu.Item>
-                  <Menu.Item key="10">Thống kê đơn hàng</Menu.Item>
+                  <Menu.Item key="10"><Link to={"/quanlydonhang"}>Thống kê dơn hàng</Link></Menu.Item>
                   <Menu.Item key="11"><Link to={"/revenue"}>Thống kê doanh thu</Link></Menu.Item>
                   <Menu.Item key="12">Đăng xuất</Menu.Item>
                 </SubMenu>
@@ -239,6 +240,7 @@ export default class Home extends Component {
             <Route exact path={"/profile"} component={Profile} />
             <Route exact path={"/addproduced"} component={Addproduced} />
             <Route exact path={"/details"} component={Details} />
+            <Route exact path={"/quanlydonhang"} component={Quanlydonhang} />
           </Switch>
         </Layout>
       </div>
