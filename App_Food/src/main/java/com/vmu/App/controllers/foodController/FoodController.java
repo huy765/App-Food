@@ -7,6 +7,7 @@ import com.vmu.App.repository.RopoFood.FoodReponsitory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,6 +33,12 @@ public class FoodController {
     public List<Food> getListFoodByCategory(@RequestParam(value = "id" ,defaultValue = "2") String id){
         Long idCategory = Long.parseLong(id);
         return foodReponsitory.findByIdCategory(idCategory);
+    }
+
+    @GetMapping("/produced/{namefood}")
+    public List<Food> getListFoodByNameLike(@PathVariable String namefood){
+        List<Food> listFood = foodReponsitory.findByNamefoodLike("%"+namefood+"%");
+        return listFood;
     }
 
 	@PostMapping(value="/addproduced")

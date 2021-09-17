@@ -14,6 +14,10 @@ class produce {
   addProduced(food){
     return axios.post(API_URL + "addproduced",food)
   }
+
+  getListFoodByNameLike(foodname){
+    return axios.get(`${API_URL}produced/${foodname}`)
+  }
 }
 
 export default new produce();

@@ -23,7 +23,6 @@ import { Switch, Route, Link } from "react-router-dom";
 import Addproduced from "./addproduced.component";
 import Details from "./details.component";
 import Quanlydonhang from "./quanlydonhang.component";
-// import MyOrder from "./MyOrder.component";
 
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
@@ -50,6 +49,7 @@ export default class Home extends Component {
       value: 0,
       cart: [],
       itemfood: [],
+      listFood: this.props.location.state,
     };
     this.getFoodByCategory = this.getFoodByCategory.bind(this);
   }
@@ -171,7 +171,7 @@ export default class Home extends Component {
                   <Menu.Item key="11"><Link to={"/revenue"}>Thống kê doanh thu</Link></Menu.Item>
                   <Menu.Item key="12">Đăng xuất</Menu.Item>
                 </SubMenu>
-              : 
+                :
                 <div>
 
                 </div>

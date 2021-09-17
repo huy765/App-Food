@@ -51,10 +51,12 @@ public class CheckOutController {
     public List<CheckOut> getListcOrder(){
         return checkoutReponsitory.findAll();
     }
+    
     @GetMapping("/orderByNgaytao")
     public List<CheckOut> getListOrderByNgaytao(@RequestParam(value = "ngaytao" ,defaultValue = "15/9/2021") String ngaytao){
         return checkoutReponsitory.findByNgaytao(ngaytao);
     }
+
     @PostMapping(value="/order")
     public ResponseEntity<String> postMethodName(@RequestBody CheckOut entity) {
         System.out.println(entity.getNgaytao());

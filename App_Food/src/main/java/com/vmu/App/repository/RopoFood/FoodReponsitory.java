@@ -13,4 +13,5 @@ public interface FoodReponsitory extends JpaRepository<Food,Long> {
     List<Food> findByNamefood(String namefood);
     List<Food> findById(Set<Long> id);
     List<Food> findAll();
+    List<Food> findByNamefoodLike(String namefood);
 }
