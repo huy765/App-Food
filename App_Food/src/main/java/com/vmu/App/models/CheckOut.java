@@ -18,6 +18,9 @@ public class CheckOut {
     @Column(name = "ngaytao")
     private String ngaytao;
 
+    @Column(name = "stateorder")
+    private String stateorder;
+
     @Column(name = "diachinhan")
     private String diachinhan;
 
@@ -55,8 +58,9 @@ public class CheckOut {
         super();
     }
 
-    public CheckOut(String ngaytao,String diachinhan,String sdtnhanhang,String hotennguoihan,Long idcart,Long foodid,String foodname,String linkimage,int qty,Double price,Long userid,Double tonggiatri){
+    public CheckOut(String ngaytao,String stateorder,String diachinhan,String sdtnhanhang,String hotennguoihan,Long idcart,Long foodid,String foodname,String linkimage,int qty,Double price,Long userid,Double tonggiatri){
         this.ngaytao = ngaytao;
+
         this.diachinhan = diachinhan;
         this.sdtnhanhang = sdtnhanhang;
         this.hotennguoihan = hotennguoihan;
@@ -80,6 +84,14 @@ public class CheckOut {
 
     public String getNgaytao() {
         return ngaytao;
+    }
+
+    public String getStateorder() {
+        return stateorder;
+    }
+
+    public void setStateorder(String stateorder) {
+        this.stateorder = stateorder;
     }
 
     public void setNgaytao(String ngaytao) {

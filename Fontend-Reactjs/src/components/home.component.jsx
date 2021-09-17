@@ -106,6 +106,7 @@ export default class Home extends Component {
     cartService.addFoodByCart(itemCart).then((res) => {
       this.setState({ cart: res.data });
     });
+    window.location.reload();
   }
 
   onClickChiTiet = (foodid, foodname, price, detail, linkimage) => {

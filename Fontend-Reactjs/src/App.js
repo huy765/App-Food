@@ -125,7 +125,8 @@ class App extends Component {
           </div>
           <div className="Cart">
             <span className="item-hover">
-              <ShoppingCartOutlined className="Item-icon" onClick={this.onClickCart()} />
+              {/* <ShoppingCartOutlined className="Item-icon" onClick={this.onClickCart()} /> */}
+              <ShoppingCartOutlined className="Item-icon"/>
               <div className="Cart-item">
                 <header>
                   <h3 className="Title-cart">Danh sách món đã chọn</h3>
