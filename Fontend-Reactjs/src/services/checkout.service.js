@@ -7,6 +7,12 @@ class checkout {
     console.log(cart);
     return axios.post(`${API_URL}order`, cart);
   }
+  getOrder() {
+    return axios.get(API_URL + "orders");
+  }
+  getOrderByNgaytao(ngaytao){
+    return axios.get(`${API_URL}orderByNgaytao?ngaytao=${ngaytao}`);
+  }
 }
 
 export default new checkout();

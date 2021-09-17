@@ -10,4 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CheckoutReponsitory extends JpaRepository<CheckOut,Long> {
     List<CheckOut> findByUserid(Long userid);
+    List<CheckOut> findAll();
+    List<CheckOut> findByNgaytao(String ngaytao);
 }
